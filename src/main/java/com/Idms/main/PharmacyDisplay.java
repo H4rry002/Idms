@@ -5,6 +5,8 @@
  */
 package com.Idms.main;
 
+import java.awt.*;
+
 /**
  *
  * @author Jitesh
@@ -14,8 +16,14 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     /**
      * Creates new form PharmacyDisplay
      */
+    boolean dashBool;
+    boolean profileBool;
+    boolean drugBool;
     public PharmacyDisplay() {
         initComponents();
+        dashBool = true;
+        profileBool = false;
+        drugBool = false;
     }
 
     /**
@@ -29,150 +37,173 @@ public class PharmacyDisplay extends javax.swing.JFrame {
 
         mainPanel = new javax.swing.JPanel();
         sidePanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        dashboardButton = new javax.swing.JPanel();
+        dashIndicator = new javax.swing.JLabel();
+        dashBoardLabel = new javax.swing.JLabel();
+        profileButton = new javax.swing.JPanel();
+        profileIndicator = new javax.swing.JLabel();
+        profileLabel = new javax.swing.JLabel();
+        drugButton = new javax.swing.JPanel();
+        drugIndicator = new javax.swing.JLabel();
+        drugLabel = new javax.swing.JLabel();
+        settingbutton = new javax.swing.JPanel();
+        settingIndicator = new javax.swing.JLabel();
+        settingLabel = new javax.swing.JLabel();
+        logoutButton = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         displayPanel = new javax.swing.JPanel();
+        dashboardPanel = new javax.swing.JPanel();
+        profilePanel = new javax.swing.JPanel();
+        drugPanel = new javax.swing.JPanel();
+        settingPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         sidePanel.setBackground(new java.awt.Color(51, 51, 51));
         sidePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setOpaque(false);
-        jPanel1.setPreferredSize(new java.awt.Dimension(260, 50));
+        dashboardButton.setBackground(new java.awt.Color(255, 255, 255));
+        dashboardButton.setOpaque(false);
+        dashboardButton.setPreferredSize(new java.awt.Dimension(260, 50));
+        dashboardButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboardButtonMouseClicked(evt);
+            }
+        });
 
-        jLabel1.setOpaque(true);
+        dashIndicator.setBackground(new java.awt.Color(255, 255, 255));
+        dashIndicator.setOpaque(true);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile.png"))); // NOI18N
-        jLabel2.setText("Profile");
-        jLabel2.setIconTextGap(30);
+        dashBoardLabel.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        dashBoardLabel.setForeground(new java.awt.Color(255, 255, 255));
+        dashBoardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardWhite.png"))); // NOI18N
+        dashBoardLabel.setText("DashBoard");
+        dashBoardLabel.setIconTextGap(30);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout dashboardButtonLayout = new javax.swing.GroupLayout(dashboardButton);
+        dashboardButton.setLayout(dashboardButtonLayout);
+        dashboardButtonLayout.setHorizontalGroup(
+            dashboardButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dashboardButtonLayout.createSequentialGroup()
+                .addComponent(dashIndicator, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-
-        sidePanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 260, -1));
-
-        jPanel2.setOpaque(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(260, 50));
-
-        jLabel3.setOpaque(true);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardWhite.png"))); // NOI18N
-        jLabel4.setText("DashBoard");
-        jLabel4.setIconTextGap(30);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dashBoardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        dashboardButtonLayout.setVerticalGroup(
+            dashboardButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(dashIndicator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(dashBoardLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        sidePanel.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 260, -1));
+        sidePanel.add(dashboardButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 260, -1));
 
-        jPanel3.setOpaque(false);
-        jPanel3.setPreferredSize(new java.awt.Dimension(260, 50));
+        profileButton.setOpaque(false);
+        profileButton.setPreferredSize(new java.awt.Dimension(260, 50));
+        profileButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profileButtonMouseClicked(evt);
+            }
+        });
 
-        jLabel5.setOpaque(true);
+        profileIndicator.setBackground(new java.awt.Color(51, 51, 51));
+        profileIndicator.setOpaque(true);
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical.png"))); // NOI18N
-        jLabel6.setText("Drugs");
-        jLabel6.setIconTextGap(30);
+        profileLabel.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        profileLabel.setForeground(new java.awt.Color(255, 255, 255));
+        profileLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        profileLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png"))); // NOI18N
+        profileLabel.setText("Profile");
+        profileLabel.setIconTextGap(30);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout profileButtonLayout = new javax.swing.GroupLayout(profileButton);
+        profileButton.setLayout(profileButtonLayout);
+        profileButtonLayout.setHorizontalGroup(
+            profileButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profileButtonLayout.createSequentialGroup()
+                .addComponent(profileIndicator, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(profileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+        profileButtonLayout.setVerticalGroup(
+            profileButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(profileIndicator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(profileLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        sidePanel.add(profileButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 260, 50));
+
+        drugButton.setOpaque(false);
+        drugButton.setPreferredSize(new java.awt.Dimension(260, 50));
+        drugButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                drugButtonMouseClicked(evt);
+            }
+        });
+
+        drugIndicator.setBackground(new java.awt.Color(51, 51, 51));
+        drugIndicator.setOpaque(true);
+
+        drugLabel.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        drugLabel.setForeground(new java.awt.Color(255, 255, 255));
+        drugLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical.png"))); // NOI18N
+        drugLabel.setText("Drugs");
+        drugLabel.setIconTextGap(30);
+
+        javax.swing.GroupLayout drugButtonLayout = new javax.swing.GroupLayout(drugButton);
+        drugButton.setLayout(drugButtonLayout);
+        drugButtonLayout.setHorizontalGroup(
+            drugButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(drugButtonLayout.createSequentialGroup()
+                .addComponent(drugIndicator, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(drugLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        drugButtonLayout.setVerticalGroup(
+            drugButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(drugIndicator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(drugLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        sidePanel.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, -1, -1));
+        sidePanel.add(drugButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, -1, -1));
 
-        jPanel4.setOpaque(false);
-        jPanel4.setPreferredSize(new java.awt.Dimension(260, 50));
+        settingbutton.setOpaque(false);
+        settingbutton.setPreferredSize(new java.awt.Dimension(260, 50));
 
-        jLabel7.setBackground(new java.awt.Color(93, 121, 166));
-        jLabel7.setOpaque(true);
+        settingIndicator.setBackground(new java.awt.Color(93, 121, 166));
+        settingIndicator.setOpaque(true);
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(93, 121, 166));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/setting.png"))); // NOI18N
-        jLabel8.setText("Setting");
-        jLabel8.setIconTextGap(30);
+        settingLabel.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        settingLabel.setForeground(new java.awt.Color(93, 121, 166));
+        settingLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        settingLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/setting.png"))); // NOI18N
+        settingLabel.setText("Setting");
+        settingLabel.setIconTextGap(30);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout settingbuttonLayout = new javax.swing.GroupLayout(settingbutton);
+        settingbutton.setLayout(settingbuttonLayout);
+        settingbuttonLayout.setHorizontalGroup(
+            settingbuttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(settingbuttonLayout.createSequentialGroup()
+                .addComponent(settingIndicator, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(settingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(98, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        settingbuttonLayout.setVerticalGroup(
+            settingbuttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(settingIndicator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(settingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        sidePanel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, -1, -1));
+        sidePanel.add(settingbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, -1, -1));
 
-        jPanel5.setOpaque(false);
-        jPanel5.setPreferredSize(new java.awt.Dimension(260, 50));
+        logoutButton.setOpaque(false);
+        logoutButton.setPreferredSize(new java.awt.Dimension(260, 50));
 
         jLabel9.setBackground(new java.awt.Color(168, 84, 84));
         jLabel9.setOpaque(true);
@@ -184,36 +215,78 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         jLabel10.setText("Logout");
         jLabel10.setIconTextGap(30);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout logoutButtonLayout = new javax.swing.GroupLayout(logoutButton);
+        logoutButton.setLayout(logoutButtonLayout);
+        logoutButtonLayout.setHorizontalGroup(
+            logoutButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logoutButtonLayout.createSequentialGroup()
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(98, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        logoutButtonLayout.setVerticalGroup(
+            logoutButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
-        sidePanel.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, -1, -1));
+        sidePanel.add(logoutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, -1, -1));
 
         displayPanel.setBackground(new java.awt.Color(255, 255, 255));
+        displayPanel.setLayout(new java.awt.CardLayout());
 
-        javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
-        displayPanel.setLayout(displayPanelLayout);
-        displayPanelLayout.setHorizontalGroup(
-            displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout dashboardPanelLayout = new javax.swing.GroupLayout(dashboardPanel);
+        dashboardPanel.setLayout(dashboardPanelLayout);
+        dashboardPanelLayout.setHorizontalGroup(
+            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 818, Short.MAX_VALUE)
         );
-        displayPanelLayout.setVerticalGroup(
-            displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        dashboardPanelLayout.setVerticalGroup(
+            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 634, Short.MAX_VALUE)
         );
+
+        displayPanel.add(dashboardPanel, "card2");
+
+        javax.swing.GroupLayout profilePanelLayout = new javax.swing.GroupLayout(profilePanel);
+        profilePanel.setLayout(profilePanelLayout);
+        profilePanelLayout.setHorizontalGroup(
+            profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 818, Short.MAX_VALUE)
+        );
+        profilePanelLayout.setVerticalGroup(
+            profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 634, Short.MAX_VALUE)
+        );
+
+        displayPanel.add(profilePanel, "card3");
+
+        javax.swing.GroupLayout drugPanelLayout = new javax.swing.GroupLayout(drugPanel);
+        drugPanel.setLayout(drugPanelLayout);
+        drugPanelLayout.setHorizontalGroup(
+            drugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 818, Short.MAX_VALUE)
+        );
+        drugPanelLayout.setVerticalGroup(
+            drugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 634, Short.MAX_VALUE)
+        );
+
+        displayPanel.add(drugPanel, "card4");
+
+        javax.swing.GroupLayout settingPanelLayout = new javax.swing.GroupLayout(settingPanel);
+        settingPanel.setLayout(settingPanelLayout);
+        settingPanelLayout.setHorizontalGroup(
+            settingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 818, Short.MAX_VALUE)
+        );
+        settingPanelLayout.setVerticalGroup(
+            settingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 634, Short.MAX_VALUE)
+        );
+
+        displayPanel.add(settingPanel, "card5");
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -226,7 +299,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+            .addComponent(sidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(displayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -243,6 +316,57 @@ public class PharmacyDisplay extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void dashboardButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardButtonMouseClicked
+        if(!dashBool){
+            new Thread(()->{
+                dashIndicator.setBackground(new Color(255,255,255));
+                profileIndicator.setBackground(new Color(51,51,51));
+                drugIndicator.setBackground(new Color(51,51,51));
+                dashBoardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardWhite.png")));
+                profileLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png")));
+                drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical.png")));
+
+            }).start();
+            dashBool = true;
+            profileBool = false;
+            drugBool = false;
+        }
+    }//GEN-LAST:event_dashboardButtonMouseClicked
+
+    private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
+        if(!profileBool){
+            new Thread(()->{
+                profileIndicator.setBackground(new Color(255,255,255));
+                dashIndicator.setBackground(new Color(51,51,51));
+                drugIndicator.setBackground(new Color(51,51,51));
+                dashBoardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboard.png")));
+                profileLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userWhite.png")));
+                drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical.png")));
+
+            }).start();
+            dashBool = false;
+            profileBool = true;
+            drugBool = false;
+        }
+    }//GEN-LAST:event_profileButtonMouseClicked
+
+    private void drugButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drugButtonMouseClicked
+        if(!drugBool){
+            new Thread(()->{
+                drugIndicator.setBackground(new Color(255,255,255));
+                profileIndicator.setBackground(new Color(51,51,51));
+                dashIndicator.setBackground(new Color(51,51,51));
+                dashBoardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboard.png")));
+                profileLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png")));
+                drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicalWhite.png")));
+
+            }).start();
+            dashBool = false;
+            profileBool = false;
+            drugBool = true;
+        }
+    }//GEN-LAST:event_drugButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -280,23 +404,27 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel dashBoardLabel;
+    private javax.swing.JLabel dashIndicator;
+    private javax.swing.JPanel dashboardButton;
+    private javax.swing.JPanel dashboardPanel;
     private javax.swing.JPanel displayPanel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel drugButton;
+    private javax.swing.JLabel drugIndicator;
+    private javax.swing.JLabel drugLabel;
+    private javax.swing.JPanel drugPanel;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel logoutButton;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel profileButton;
+    private javax.swing.JLabel profileIndicator;
+    private javax.swing.JLabel profileLabel;
+    private javax.swing.JPanel profilePanel;
+    private javax.swing.JLabel settingIndicator;
+    private javax.swing.JLabel settingLabel;
+    private javax.swing.JPanel settingPanel;
+    private javax.swing.JPanel settingbutton;
     private javax.swing.JPanel sidePanel;
     // End of variables declaration//GEN-END:variables
 }
