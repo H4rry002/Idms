@@ -24,7 +24,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     CardLayout cardLayout = new CardLayout();
-
+    CardLayout settingLayout = new CardLayout();
     public DoctorDisplay(Doctor doctor) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -43,6 +43,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
         }
         initComponents();
         cardLayout = (CardLayout)(display.getLayout());
+        settingLayout = (CardLayout)(settingDisplayPanel.getLayout());
         displayProfile();
         appointmentNumValue.setText(String.valueOf(docPatientData.size()));
     }
@@ -1280,27 +1281,23 @@ public class DoctorDisplay extends javax.swing.JFrame {
         reportIndicator.setBackground(new Color(255,255,255));
         helpIndicator.setBackground(new Color(255,255,255));
         changePasswordIndicator.setBackground(new Color(0,0,0));
-        changePasswordPanel.setVisible(true);
-        helpPanel.setVisible(false);
-        reportPanel.setVisible(false);
+        settingLayout.show(settingDisplayPanel,"card2");
     }//GEN-LAST:event_changePasswordLabelMouseClicked
 
     private void helpLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_helpLabelMouseClicked
         reportIndicator.setBackground(new Color(255,255,255));
         helpIndicator.setBackground(new Color(0,0,0));
         changePasswordIndicator.setBackground(new Color(255,255,255));
-        changePasswordPanel.setVisible(false);
-        helpPanel.setVisible(true);
-        reportPanel.setVisible(false);
+        settingLayout.show(settingDisplayPanel,"card3");
+
     }//GEN-LAST:event_helpLabelMouseClicked
 
     private void reportLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportLabelMouseClicked
         reportIndicator.setBackground(new Color(0,0,0));
         helpIndicator.setBackground(new Color(255,255,255));
         changePasswordIndicator.setBackground(new Color(255,255,255));
-        changePasswordPanel.setVisible(false);
-        helpPanel.setVisible(false);
-        reportPanel.setVisible(true);
+        settingLayout.show(settingDisplayPanel,"card4");
+
     }//GEN-LAST:event_reportLabelMouseClicked
 
     private void changePasswordbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordbuttonActionPerformed
