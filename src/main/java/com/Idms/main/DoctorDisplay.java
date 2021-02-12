@@ -997,6 +997,11 @@ public class DoctorDisplay extends javax.swing.JFrame {
         profile.add(profileIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 40, 50));
 
         logout.setBackground(new java.awt.Color(51, 51, 51));
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
         logout.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logoutIndicator.setBackground(new java.awt.Color(168, 84, 84));
@@ -1037,12 +1042,12 @@ public class DoctorDisplay extends javax.swing.JFrame {
             sidemenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidemenuLayout.createSequentialGroup()
                 .addGroup(sidemenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(prescription, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(home, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 22, Short.MAX_VALUE))
             .addComponent(setting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         sidemenuLayout.setVerticalGroup(
             sidemenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1077,7 +1082,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
                 .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(sidemenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(display, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1344,6 +1349,10 @@ public class DoctorDisplay extends javax.swing.JFrame {
         }).start();
     }//GEN-LAST:event_reportSumitbuttonActionPerformed
 
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        signOut();
+    }//GEN-LAST:event_logoutMouseClicked
+
 
 
     void moveTimeIndicator(int x){
@@ -1446,6 +1455,12 @@ public class DoctorDisplay extends javax.swing.JFrame {
             profileVerified.setText("Not Verified");
         }
     }
+
+    private void signOut(){
+        main.logout("doctor");
+    }
+
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

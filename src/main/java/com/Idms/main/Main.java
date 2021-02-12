@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 
 public class Main {
-    static Login l;
+    static Login login;
     VerifyLogin verifyLogin = new VerifyLogin();
     Users users = new Users();
     Prescription prescription = new Prescription();
@@ -65,8 +65,8 @@ public class Main {
         }
     }
     public void doctor(Doctor doctor) {
-        l.setVisible(false);
-        l.dispose();
+        login.setVisible(false);
+        login.dispose();
         doctor.setPatient(getPatientDataDoc(doctor.getRegistrationNo()));
         docDisplay = new DoctorDisplay(doctor);
         docDisplay.setVisible(true);
@@ -154,9 +154,19 @@ public class Main {
         return null;
     }
 
+    public void logout(String person){
+        if(person.equals("doctor")){
+            docDisplay.dispose();
+        }
+        // else { pharma class dispose };
+        login = new Login();
+        login.setVisible(true);
+
+    }
+
     public static void main(String[] args) {
-        l = new Login();
-        l.setVisible(true);
+        login = new Login();
+        login.setVisible(true);
     }
 }
 
