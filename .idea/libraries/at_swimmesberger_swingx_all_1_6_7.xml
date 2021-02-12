@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="at.swimmesberger:swingx-all:1.6.7" type="repository">
+    <properties maven-id="at.swimmesberger:swingx-all:1.6.7" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/swingx-all-1.6.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
