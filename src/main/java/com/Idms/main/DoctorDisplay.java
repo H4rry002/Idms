@@ -1217,8 +1217,8 @@ public class DoctorDisplay extends javax.swing.JFrame {
             }
             a[i] = medicineList[i][0] +" {"+medicineList[i][1]+"}";
         }
-        boolean b = main.createReceipt(doctor.getRegistrationNo(),patientName.getText(),Integer.parseInt(patientAge.getText()),a,Long.parseLong(patientPhNo.getText()));
-        if(!b){
+        Receipt b = main.createReceipt(doctor.getRegistrationNo(),patientName.getText(),Integer.parseInt(patientAge.getText()),a,Long.parseLong(patientPhNo.getText()));
+        if(b==null){
             receipterror.setText("*You filled something wrong");
         }else{
             patientName.setText("");
@@ -1234,7 +1234,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
             // Patient Updated patient data from the database
             Thread p = new Thread( () ->{
                 try{
-                    allDocPatientData = main.getPatientDataDoc(doctor.getRegistrationNo());
+                    allDocPatientData.add(b);
                     moveTimeIndicator(oneDayView.getBounds().x);
                     displayData("OneDay");
                 }catch (Exception e){

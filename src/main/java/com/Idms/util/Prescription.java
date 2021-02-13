@@ -12,17 +12,18 @@ import java.util.TimerTask;
 public class Prescription {
     Connection connect = DBConnection.getDBConnection();
 
-    public String generateReceipt(Receipt receipt) throws SQLException {
+    public Receipt generateReceipt(Receipt receipt) throws SQLException {
         PreparedStatement state = connect.prepareStatement("insert into activeReceipt values(?,?,?,?,?,?)");
+        receipt.setGenerateTime(new Date());
         state.setInt(1,receipt.getDocRegisNo());
         state.setString(2,receipt.getPatientName());
         state.setLong(3,receipt.getPatientPhNo());
-        state.setTimestamp(4,new Timestamp(new Date().getTime()));
+        state.setTimestamp(4,new Timestamp(receipt.getGenerateTime().getTime()));
         state.setInt(5,receipt.getPatientAge());
         state.setString(6,receipt.getMedicine());
         if(state.executeUpdate()>0)
-            return "Inserted";
-        return "error";
+            return receipt;
+        return null;
     }
 
     public Receipt checkRecord(long phNo) throws SQLException {

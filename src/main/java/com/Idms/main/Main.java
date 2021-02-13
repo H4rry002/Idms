@@ -2,6 +2,8 @@ package com.Idms.main;
 
 import com.Idms.util.*;
 import com.Idms.beans.*;
+import com.mysql.cj.result.SqlDateValueFactory;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -69,15 +71,24 @@ public class Main {
         }
     }
     public void doctor(Doctor doctor) {
+        try {
+            doctor.setPatient(display.PatientData(doctor.getRegistrationNo()));
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         login.setVisible(false);
         login.dispose();
-        doctor.setPatient(getPatientDataDoc(doctor.getRegistrationNo()));
         docDisplay = new DoctorDisplay(doctor);
         docDisplay.setVisible(true);
         docDisplay.setLocationRelativeTo(null);
     }
 
     public void pharmacy(Pharma pharma){
+        try{
+            pharma.setCustomer(display.CustomerList(pharma.getMedStoreId()));
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         login.setVisible(false);
         login.dispose();
         pharmacyDisplay = new PharmacyDisplay(pharma);
@@ -85,7 +96,7 @@ public class Main {
         pharmacyDisplay.setLocationRelativeTo(null);
     }
 
-    public boolean createReceipt(int docRegisNo,String name,int age,String[] medicine,long ph){
+    public Receipt createReceipt(int docRegisNo,String name,int age,String[] medicine,long ph){
         Receipt receipt = new Receipt();
         receipt.setMedicine(medicine);
         receipt.setPatientAge(age);
@@ -93,12 +104,22 @@ public class Main {
         receipt.setDocRegisNo(docRegisNo);
         receipt.setPatientName(name);
         try {
-            return prescription.generateReceipt(receipt).equals("Inserted");
+            return prescription.generateReceipt(receipt);
         }catch(SQLException e){
             System.out.println(e);
         }
-        return false;
+        return null;
     }
+
+    public Receipt searchReceipt(long phoneNo){
+        try {
+            return prescription.checkRecord(phoneNo);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public String changePassword(String current,String newPassword,String email,String person){
         if(person.equals("doctor")){
             try {
@@ -157,14 +178,7 @@ public class Main {
     }
 
 
-    public ArrayList<Receipt> getPatientDataDoc(int docRegis) {
-        try {
-            return display.PatientData(docRegis);
-        }catch (SQLException e){
-            System.out.print(e);
-        }
-        return null;
-    }
+
 
     public void logout(String person){
         if(person.equals("doctor")){

@@ -10,16 +10,10 @@ public class Pharma {
     private long phoneNo;
     private String email;
     private String medStoreId;
-
-    public ArrayList<Receipt> getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(ArrayList<Receipt> customer) {
-        this.customer = customer;
-    }
-
     private ArrayList<Receipt> customer;
+    private boolean verified;
+
+
 
     public boolean isVerified() {
         return verified;
@@ -29,7 +23,17 @@ public class Pharma {
         this.verified = verified;
     }
 
-    private boolean verified;
+
+    public ArrayList<Receipt> getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(ArrayList<Receipt> customer) {
+        this.customer = customer;
+    }
+
+
+
 
     public String getMedStoreId() {
         return medStoreId;

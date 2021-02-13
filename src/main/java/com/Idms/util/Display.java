@@ -81,7 +81,7 @@ public class Display {
     }
 
 
-    public ArrayList<Receipt> todayCustomer(String medStoreId) throws SQLException {
+    public ArrayList<Receipt> CustomerList(String medStoreId) throws SQLException {
         ArrayList<Receipt> list = new ArrayList<>();
         PreparedStatement state = connect.prepareStatement("select * from donereceipt where medstoreid = ? and purchasetime>=CURDATE()");
         state.setString(1,medStoreId);
