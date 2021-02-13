@@ -32,6 +32,8 @@ public class Main {
         else{
             Pharma pharma = verifyLogin.verifyCredsPh(username,password);
             if(pharma!=null){
+                if(!pharma.isVerified())
+                    return "notVerified";
                 pharmacy(pharma);
                 return "Okay";
             }
@@ -80,6 +82,7 @@ public class Main {
         login.dispose();
         pharmacyDisplay = new PharmacyDisplay(pharma);
         pharmacyDisplay.setVisible(true);
+        pharmacyDisplay.setLocationRelativeTo(null);
     }
 
     public boolean createReceipt(int docRegisNo,String name,int age,String[] medicine,long ph){
