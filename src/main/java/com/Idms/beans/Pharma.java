@@ -1,5 +1,8 @@
 package com.Idms.beans;
 
+import java.util.ArrayList;
+
+
 public class Pharma {
     private String name;
     private String password;
@@ -7,6 +10,16 @@ public class Pharma {
     private long phoneNo;
     private String email;
     private String medStoreId;
+
+    public ArrayList<Receipt> getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(ArrayList<Receipt> customer) {
+        this.customer = customer;
+    }
+
+    private ArrayList<Receipt> customer;
 
     public boolean isVerified() {
         return verified;

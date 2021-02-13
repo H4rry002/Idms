@@ -69,6 +69,15 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         displayPanel = new javax.swing.JPanel();
         dashboardPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        totalCustomer = new javax.swing.JLabel();
+        totalAmount = new javax.swing.JLabel();
+        oneMonth = new javax.swing.JLabel();
+        oneWeek = new javax.swing.JLabel();
+        oneDay = new javax.swing.JLabel();
+        tweleveHours = new javax.swing.JLabel();
+        slider = new javax.swing.JLabel();
         profilePanel = new javax.swing.JPanel();
         profileNameLabel = new javax.swing.JLabel();
         profileName = new javax.swing.JLabel();
@@ -269,15 +278,84 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         displayPanel.setBackground(new java.awt.Color(255, 255, 255));
         displayPanel.setLayout(new java.awt.CardLayout());
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        totalCustomer.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        totalCustomer.setText("Total Customer:");
+
+        totalAmount.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        totalAmount.setText("Total Amount:");
+
+        oneMonth.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        oneMonth.setText("1M");
+
+        oneWeek.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        oneWeek.setText("1W");
+
+        oneDay.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        oneDay.setText("1D");
+
+        tweleveHours.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        tweleveHours.setText("12H");
+
+        slider.setBackground(new java.awt.Color(0, 0, 0));
+        slider.setOpaque(true);
+
         javax.swing.GroupLayout dashboardPanelLayout = new javax.swing.GroupLayout(dashboardPanel);
         dashboardPanel.setLayout(dashboardPanelLayout);
         dashboardPanelLayout.setHorizontalGroup(
             dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 968, Short.MAX_VALUE)
+            .addGroup(dashboardPanelLayout.createSequentialGroup()
+                .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dashboardPanelLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(totalCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(214, 214, 214)
+                        .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dashboardPanelLayout.createSequentialGroup()
+                        .addGap(740, 740, 740)
+                        .addComponent(oneMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(oneWeek, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(oneDay, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(tweleveHours, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dashboardPanelLayout.createSequentialGroup()
+                        .addGap(830, 830, 830)
+                        .addComponent(slider, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dashboardPanelLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(90, 90, 90))
         );
         dashboardPanelLayout.setVerticalGroup(
             dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
+            .addGroup(dashboardPanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(oneMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oneWeek, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oneDay, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tweleveHours, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(slider, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         displayPanel.add(dashboardPanel, "card2");
@@ -571,8 +649,13 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     private javax.swing.JPanel drugPanel;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JPanel logoutButton;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JLabel oneDay;
+    private javax.swing.JLabel oneMonth;
+    private javax.swing.JLabel oneWeek;
     private javax.swing.JPanel profileButton;
     private javax.swing.JLabel profileEmail;
     private javax.swing.JLabel profileEmailLabel;
@@ -595,5 +678,9 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     private javax.swing.JPanel settingPanel;
     private javax.swing.JPanel settingbutton;
     private javax.swing.JPanel sidePanel;
+    private javax.swing.JLabel slider;
+    private javax.swing.JLabel totalAmount;
+    private javax.swing.JLabel totalCustomer;
+    private javax.swing.JLabel tweleveHours;
     // End of variables declaration//GEN-END:variables
 }
