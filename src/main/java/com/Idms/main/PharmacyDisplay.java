@@ -18,9 +18,12 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     /**
      * Creates new form PharmacyDisplay
      */
+    Pharma pharma;
+    CardLayout mainCardLayout = new CardLayout();
     boolean dashBool;
     boolean profileBool;
     boolean drugBool;
+    boolean settingBool;
     public PharmacyDisplay() {
         initComponents();
         dashBool = true;
@@ -32,6 +35,10 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         dashBool = true;
         profileBool = false;
         drugBool = false;
+        settingBool = false;
+        mainCardLayout = (CardLayout) (displayPanel.getLayout());
+        this.pharma =  pharma;
+        displayProfile();
     }
 
     /**
@@ -63,6 +70,19 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         displayPanel = new javax.swing.JPanel();
         dashboardPanel = new javax.swing.JPanel();
         profilePanel = new javax.swing.JPanel();
+        profileNameLabel = new javax.swing.JLabel();
+        profileName = new javax.swing.JLabel();
+        profileEmailLabel = new javax.swing.JLabel();
+        profileUsernameLabel = new javax.swing.JLabel();
+        profileVerifiedLabel = new javax.swing.JLabel();
+        profilePhoneLabel = new javax.swing.JLabel();
+        profileEmail = new javax.swing.JLabel();
+        profileUsername = new javax.swing.JLabel();
+        profileGst = new javax.swing.JLabel();
+        profilePhone = new javax.swing.JLabel();
+        profileImage = new javax.swing.JLabel();
+        profileGstLabel = new javax.swing.JLabel();
+        profileVerified = new javax.swing.JLabel();
         drugPanel = new javax.swing.JPanel();
         settingPanel = new javax.swing.JPanel();
 
@@ -181,6 +201,11 @@ public class PharmacyDisplay extends javax.swing.JFrame {
 
         settingbutton.setOpaque(false);
         settingbutton.setPreferredSize(new java.awt.Dimension(260, 50));
+        settingbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settingbuttonMouseClicked(evt);
+            }
+        });
 
         settingIndicator.setBackground(new java.awt.Color(93, 121, 166));
         settingIndicator.setOpaque(true);
@@ -248,24 +273,107 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         dashboardPanel.setLayout(dashboardPanelLayout);
         dashboardPanelLayout.setHorizontalGroup(
             dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 818, Short.MAX_VALUE)
+            .addGap(0, 968, Short.MAX_VALUE)
         );
         dashboardPanelLayout.setVerticalGroup(
             dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
+            .addGap(0, 646, Short.MAX_VALUE)
         );
 
         displayPanel.add(dashboardPanel, "card2");
+
+        profilePanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        profileNameLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        profileNameLabel.setText("Name");
+
+        profileName.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+
+        profileEmailLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        profileEmailLabel.setText("Email:");
+
+        profileUsernameLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        profileUsernameLabel.setText("Username:");
+
+        profileVerifiedLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        profileVerifiedLabel.setText("Verified:");
+
+        profilePhoneLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        profilePhoneLabel.setText("Phone No:");
+
+        profileEmail.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+
+        profileUsername.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+
+        profileGst.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+
+        profilePhone.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+
+        profileImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userprofile.jpg"))); // NOI18N
+
+        profileGstLabel.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        profileGstLabel.setText("GST No:");
+
+        profileVerified.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
 
         javax.swing.GroupLayout profilePanelLayout = new javax.swing.GroupLayout(profilePanel);
         profilePanel.setLayout(profilePanelLayout);
         profilePanelLayout.setHorizontalGroup(
             profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 818, Short.MAX_VALUE)
+            .addGroup(profilePanelLayout.createSequentialGroup()
+                .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(profilePanelLayout.createSequentialGroup()
+                        .addGap(259, 259, 259)
+                        .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(profileEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(profileNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(profileUsernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(profileVerifiedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(profilePhoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(profileGstLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(116, 116, 116)
+                        .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(profileName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(profileEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(profileUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(profilePhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(profileGst, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(profileVerified, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(profilePanelLayout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
         profilePanelLayout.setVerticalGroup(
             profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profilePanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(profileNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profileName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(profileEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profileEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(profileUsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profileUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(profilePhoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profilePhone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(profileVerifiedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profileVerified, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(profileGstLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(profileGst, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
         );
 
         displayPanel.add(profilePanel, "card3");
@@ -274,11 +382,11 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         drugPanel.setLayout(drugPanelLayout);
         drugPanelLayout.setHorizontalGroup(
             drugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 818, Short.MAX_VALUE)
+            .addGap(0, 968, Short.MAX_VALUE)
         );
         drugPanelLayout.setVerticalGroup(
             drugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
+            .addGap(0, 646, Short.MAX_VALUE)
         );
 
         displayPanel.add(drugPanel, "card4");
@@ -287,11 +395,11 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         settingPanel.setLayout(settingPanelLayout);
         settingPanelLayout.setHorizontalGroup(
             settingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 818, Short.MAX_VALUE)
+            .addGap(0, 968, Short.MAX_VALUE)
         );
         settingPanelLayout.setVerticalGroup(
             settingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
+            .addGap(0, 646, Short.MAX_VALUE)
         );
 
         displayPanel.add(settingPanel, "card5");
@@ -334,11 +442,12 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                 dashBoardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardWhite.png")));
                 profileLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png")));
                 drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical.png")));
-
+                mainCardLayout.show(displayPanel,"card2");
             }).start();
             dashBool = true;
             profileBool = false;
             drugBool = false;
+            settingBool = false;
         }
     }//GEN-LAST:event_dashboardButtonMouseClicked
 
@@ -351,11 +460,12 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                 dashBoardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboard.png")));
                 profileLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userWhite.png")));
                 drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical.png")));
-
+                mainCardLayout.show(displayPanel,"card3");
             }).start();
             dashBool = false;
             profileBool = true;
             drugBool = false;
+            settingBool = false;
         }
     }//GEN-LAST:event_profileButtonMouseClicked
 
@@ -368,13 +478,51 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                 dashBoardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboard.png")));
                 profileLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png")));
                 drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicalWhite.png")));
-
+                mainCardLayout.show(displayPanel,"card4");
             }).start();
             dashBool = false;
             profileBool = false;
             drugBool = true;
+            settingBool = false;
         }
     }//GEN-LAST:event_drugButtonMouseClicked
+
+    private void settingbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingbuttonMouseClicked
+        if(!settingBool){
+            new Thread(()->{
+                drugIndicator.setBackground(new Color(51,51,51));
+                profileIndicator.setBackground(new Color(51,51,51));
+                dashIndicator.setBackground(new Color(51,51,51));
+                dashBoardLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboard.png")));
+                profileLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png")));
+                drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicalWhite.png")));
+                mainCardLayout.show(displayPanel,"card5");
+            }).start();
+            dashBool = false;
+            profileBool = false;
+            drugBool = false;
+            settingBool = true;
+        }
+    }//GEN-LAST:event_settingbuttonMouseClicked
+
+    public void displayProfile(){
+        if(pharma!=null){
+            new Thread(()->{
+                profileEmail.setText(pharma.getEmail());
+                profileName.setText(pharma.getName());
+                profileUsername.setText(pharma.getMedStoreId());
+                profileGst.setText(pharma.getGstNo());
+                if(pharma.getPhoneNo()>10){
+                    profilePhone.setText(String.valueOf(pharma.getPhoneNo()));
+                }else{
+                    profilePhone.setText("NA");
+                }
+                profileVerified.setText(pharma.isVerified()?"Verified":"Not Verified");
+            }).start();
+        }
+    }
+
+
 
     /**
      * @param args the command line arguments
@@ -426,9 +574,22 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     private javax.swing.JPanel logoutButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel profileButton;
+    private javax.swing.JLabel profileEmail;
+    private javax.swing.JLabel profileEmailLabel;
+    private javax.swing.JLabel profileGst;
+    private javax.swing.JLabel profileGstLabel;
+    private javax.swing.JLabel profileImage;
     private javax.swing.JLabel profileIndicator;
     private javax.swing.JLabel profileLabel;
+    private javax.swing.JLabel profileName;
+    private javax.swing.JLabel profileNameLabel;
     private javax.swing.JPanel profilePanel;
+    private javax.swing.JLabel profilePhone;
+    private javax.swing.JLabel profilePhoneLabel;
+    private javax.swing.JLabel profileUsername;
+    private javax.swing.JLabel profileUsernameLabel;
+    private javax.swing.JLabel profileVerified;
+    private javax.swing.JLabel profileVerifiedLabel;
     private javax.swing.JLabel settingIndicator;
     private javax.swing.JLabel settingLabel;
     private javax.swing.JPanel settingPanel;
