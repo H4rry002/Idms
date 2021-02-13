@@ -15,6 +15,7 @@ public class Main {
     Prescription prescription = new Prescription();
     Display display = new Display();
     static DoctorDisplay docDisplay;
+    static PharmacyDisplay pharmacyDisplay;
 
 
     public String verifyLogin(String person,String username,String password) throws SQLException, IOException {
@@ -29,9 +30,10 @@ public class Main {
             }
         }
         else{
-            Pharma pharma = verifyLogin.verifyCredsPh(username,new String(password));
+            Pharma pharma = verifyLogin.verifyCredsPh(username,password);
             if(pharma!=null){
-                return null; // Pharma Interface is not yet completed
+                pharmacy(pharma);
+                return "Okay";
             }
         }
         return "*Invalid Credential";
@@ -71,6 +73,13 @@ public class Main {
         docDisplay = new DoctorDisplay(doctor);
         docDisplay.setVisible(true);
         docDisplay.setLocationRelativeTo(null);
+    }
+
+    public void pharmacy(Pharma pharma){
+        login.setVisible(false);
+        login.dispose();
+        pharmacyDisplay = new PharmacyDisplay(pharma);
+        pharmacyDisplay.setVisible(true);
     }
 
     public boolean createReceipt(int docRegisNo,String name,int age,String[] medicine,long ph){

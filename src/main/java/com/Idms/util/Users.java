@@ -13,16 +13,17 @@ public class Users {
     public String createDoctor(Doctor doc) throws SQLException {
         try {
             String password = BCrypt.hashpw(doc.getPassword(), BCrypt.gensalt(12));
-            PreparedStatement state = connect.prepareStatement("insert into doctor values(?,?,?,?,?,?)");
+            PreparedStatement state = connect.prepareStatement("insert into doctor values(?,?,?,?,?,?,?)");
             state.setInt(1, doc.getRegistrationNo());
             state.setString(2, doc.getName());
             state.setString(3, generateDocUsername(doc.getName()));
             state.setString(4, doc.getEmail().toLowerCase());
             state.setString(5, password);
             state.setInt(6, (int) doc.getPhoneNo());
+            state.setBoolean(7,false);
             if (state.executeUpdate() > 0)
                 return "Inserted";
-        }catch(Exception e){
+        }catch(SQLIntegrityConstraintViolationException e){
             return e.toString();
         }
         return "error";
@@ -31,7 +32,7 @@ public class Users {
      public String generateDocUsername(String name) throws SQLException {
         Random random = new Random();
         name = name.split("\\s")[0];
-        String username = "DR"+name+Integer.toString(random.nextInt(100));
+        String username = "DR"+name+ random.nextInt(100);
         PreparedStatement state = connect.prepareStatement("select * from doctor where username=?");
         while(true){
             state.setString(1,username.toUpperCase());
@@ -45,7 +46,7 @@ public class Users {
 
     public String generatePhUsername(String name) throws SQLException {
         Random random = new Random();
-        String username = "PH"+name+Integer.toString(random.nextInt(100));
+        String username = "PH"+name.split(" ")[0]+ random.nextInt(100);
         PreparedStatement state = connect.prepareStatement("select * from pharma where medStoreId=?");
         while(true){
             state.setString(1,username.toUpperCase());
@@ -58,15 +59,20 @@ public class Users {
 
     public String createPharma(Pharma pharma) throws SQLException {
         String password = BCrypt.hashpw(pharma.getPassword(),BCrypt.gensalt(12));
-        PreparedStatement state = connect.prepareStatement("insert into pharma values(?,?,?,?,?,?)");
-        state.setString(1,generatePhUsername(pharma.getName()));
-        state.setString(2,pharma.getName());
-        state.setString(3,password);
-        state.setString(4,pharma.getGstNo());
-        state.setString(5,pharma.getEmail().toLowerCase());
-        state.setInt(6,(int)pharma.getPhoneNo());
-        if(state.executeUpdate()>0)
-            return "Inserted";
+        try {
+            PreparedStatement state = connect.prepareStatement("insert into pharma values(?,?,?,?,?,?,?)");
+            state.setString(1, generatePhUsername(pharma.getName()));
+            state.setString(2, pharma.getName());
+            state.setString(3, password);
+            state.setString(4, pharma.getGstNo());
+            state.setString(5, pharma.getEmail().toLowerCase());
+            state.setInt(6, (int) pharma.getPhoneNo());
+            state.setBoolean(7, false);
+            if (state.executeUpdate() > 0)
+                return "Inserted";
+        }catch (SQLIntegrityConstraintViolationException e){
+            return e.toString();
+        }
         return "error";
     }
 

@@ -5,6 +5,8 @@
  */
 package com.Idms.main;
 
+import com.Idms.beans.Pharma;
+
 import java.awt.*;
 
 /**
@@ -20,6 +22,12 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     boolean profileBool;
     boolean drugBool;
     public PharmacyDisplay() {
+        initComponents();
+        dashBool = true;
+        profileBool = false;
+        drugBool = false;
+    }
+    public PharmacyDisplay(Pharma pharma) {
         initComponents();
         dashBool = true;
         profileBool = false;

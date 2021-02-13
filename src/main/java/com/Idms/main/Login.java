@@ -22,7 +22,7 @@ public class Login extends javax.swing.JFrame {
  * Creates new form Login
  */
 
-    static Main main = new Main();
+    final Main main = new Main();
     static String resetCode,username,person;
     CardLayout cardLayout = new CardLayout();
     ExecutorService service = Executors.newSingleThreadExecutor();
@@ -771,22 +771,21 @@ public class Login extends javax.swing.JFrame {
         }
         try{
             String a = main.createUser(person, name, email, password, regisNo);
-            System.out.println(a);
+
             if (a.substring(a.length() - 6, a.length() - 1).equals("email")) {
                 signUperror.setText("*Email already registered");
-                return;
             }
             if (a.substring(a.length() - 8, a.length() - 1).equals("PRIMARY")) {
                 signUperror.setText("*Registration No or Gst No already registered");
             }
             if(a.startsWith("Inserted")){
-                loginerror.setForeground(new Color(49, 191, 49));
+                verifyErrorLabel.setForeground(new Color(49, 191, 49));
                 verifyErrorLabel.setText("*Successful signed up");
                 cardLayout.show(loginSignPanel,"card4");
                 verified = false;
             }
         }catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
         if(signUperror.getText().length()>0) {
             new Thread(() -> {
@@ -825,7 +824,7 @@ public class Login extends javax.swing.JFrame {
             }
             loginerror.setText(a);
         }catch(Exception e){
-            System.out.println(e);
+            e.printStackTrace();
         }
         if(loginerror.getText().length()>0) {
             new Thread(() -> {

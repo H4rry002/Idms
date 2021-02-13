@@ -8,6 +8,15 @@ public class Pharma {
     private String email;
     private String medStoreId;
 
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    private boolean verified;
 
     public String getMedStoreId() {
         return medStoreId;

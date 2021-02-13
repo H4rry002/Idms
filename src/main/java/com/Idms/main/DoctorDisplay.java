@@ -1573,8 +1573,8 @@ public class DoctorDisplay extends javax.swing.JFrame {
     private String[][] medicineList = new String[10][2];
     private DefaultTableModel medicineTableModel;
     private DefaultTableModel patientTableModel;
-    private Main main = new Main();
-    private Doctor doctor;
+    private final Main main = new Main();
+    private final Doctor doctor;
     private ArrayList<Receipt> docPatientData;
     private ArrayList<Receipt> allDocPatientData;
 }

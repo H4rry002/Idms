@@ -40,7 +40,6 @@ public class VerifyLogin {
     public Pharma verifyCredsPh(String username, String password) throws SQLException {
         PreparedStatement state;
             if(username.indexOf("@")>0){
-                System.out.println("email");
                 state = connect.prepareStatement("select * from pharma where email = ?");
                 state.setString(1,username.toLowerCase());
             }
@@ -58,9 +57,10 @@ public class VerifyLogin {
                     Pharma pharma = new Pharma();
                     pharma.setMedStoreId(rs.getString(1));
                     pharma.setName(rs.getString(2));
-                    pharma.setGstNo(rs.getString(3));
-                    pharma.setEmail(rs.getString(4));
-                    pharma.setPhoneNo(rs.getInt(5));
+                    pharma.setGstNo(rs.getString(4));
+                    pharma.setEmail(rs.getString(5));
+                    pharma.setPhoneNo(rs.getInt(6));
+                    pharma.setVerified(rs.getBoolean(7));
                     return pharma;
                 }
             }
