@@ -177,7 +177,15 @@ public class Main {
         return sb.toString();
     }
 
+    public Receipt purchase(Receipt receipt){
 
+        new Thread(()->{
+            if(!prescription.removeActiveReceipt(receipt)){
+                System.out.println("the row is not deleted");
+            }
+        }).start();
+        return prescription.doneReceipt(receipt);
+    }
 
 
     public void logout(String person){

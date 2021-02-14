@@ -10,6 +10,16 @@ public class Receipt {
     private Date purchaseTime;
     private Date generateTime;
     private String[] medicine;
+    private int amount;
+
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
 
     public String getMedicine() {

@@ -14,7 +14,9 @@ public class Pharma {
     private boolean verified;
 
 
-
+    public void addCustomer(Receipt receipt){
+        customer.add(receipt);
+    }
     public boolean isVerified() {
         return verified;
     }

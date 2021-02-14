@@ -8,13 +8,15 @@ package com.Idms.main;
 import com.Idms.beans.Pharma;
 import com.Idms.beans.Receipt;
 
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.AbstractTableModel;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
 import java.awt.*;
-import java.util.EventObject;
+import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 
 /**
  *
@@ -28,18 +30,25 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     Main main;
     Pharma pharma;
     CardLayout mainCardLayout = new CardLayout();
+    Receipt receipt;
     boolean dashBool;
     boolean profileBool;
     boolean drugBool;
     boolean settingBool;
     private DefaultTableModel custModel;
-    public PharmacyDisplay() {
-        initComponents();
-        dashBool = true;
-        profileBool = false;
-        drugBool = false;
-    }
+    ExecutorService service = Executors.newSingleThreadExecutor();
+
     public PharmacyDisplay(Pharma pharma) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PharmacyDisplay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         this.pharma =  pharma;
         this.main = new Main();
         displayCustomer();
@@ -118,9 +127,9 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         phoneSearchButton = new javax.swing.JButton();
         drugError = new javax.swing.JLabel();
         drugMedicineError = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        totalBill = new javax.swing.JLabel();
+        checkoutButton = new javax.swing.JButton();
+        buyButton = new javax.swing.JButton();
         settingPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -496,6 +505,8 @@ public class PharmacyDisplay extends javax.swing.JFrame {
 
         drugPersonDetails.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
+        drugTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        drugTable.getTableHeader().setFont(new Font("Segoe UI", 1 , 18));
         drugTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null,null},
@@ -510,6 +521,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         drugTable.setColumnSelectionAllowed(true);
         drugTable.setGridColor(new java.awt.Color(255, 255, 255));
         drugTable.setOpaque(false);
+        drugTable.setRowHeight(25);
         drugTable.setSelectionBackground(new java.awt.Color(51, 153, 255));
         drugTable.setShowHorizontalLines(false);
         drugTable.setShowVerticalLines(false);
@@ -538,15 +550,33 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         drugError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         drugError.setForeground(new java.awt.Color(255, 0, 51));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel2.setText("Total Bill:");
+        drugMedicineError.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        drugMedicineError.setForeground(new java.awt.Color(255, 51, 51));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        totalBill.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        totalBill.setText("Total Bill:");
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Checkout");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.setContentAreaFilled(false);
+        checkoutButton.setBackground(new java.awt.Color(255, 255, 255));
+        checkoutButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        checkoutButton.setText("Checkout");
+        checkoutButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        checkoutButton.setContentAreaFilled(false);
+        checkoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkoutButtonActionPerformed(evt);
+            }
+        });
+
+        buyButton.setBackground(new java.awt.Color(255, 255, 255));
+        buyButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        buyButton.setText("Buy");
+        buyButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        buyButton.setContentAreaFilled(false);
+        buyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -568,20 +598,16 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                                 .addComponent(drugPersonDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(drugMedicineError, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(drugMedicineError, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(93, Short.MAX_VALUE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(67, 67, 67)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(checkoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(totalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -605,16 +631,16 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                 .addComponent(drugMedicineError, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(totalBill, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(checkoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(80, 80, 80)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout drugPanelLayout = new javax.swing.GroupLayout(drugPanel);
@@ -624,7 +650,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
             .addGroup(drugPanelLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         drugPanelLayout.setVerticalGroup(
             drugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -753,13 +779,13 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     private void phoneSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneSearchButtonActionPerformed
         String temp = phoneSearch.getText();
         if(temp.length()==10){
-            Receipt receipt = main.searchReceipt(Long.parseLong(temp));
-            if(receipt==null){
+            this.receipt = main.searchReceipt(Long.parseLong(temp));
+            if(this.receipt==null){
                 drugError.setText("*No Prescription");
                 return;
             }
             drugPersonDetails.setText("<html>Name: "+receipt.getPatientName()+"<br>Age: "+receipt.getPatientAge()+"<br>Phone No: "+receipt.getPatientPhNo()+"</html>");
-            displayMed(receipt);
+            displayMed();
         }else{
             drugError.setText("*Invalid");
         }
@@ -779,13 +805,63 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         main.logout("pharmacy");
     }//GEN-LAST:event_logoutButtonMouseClicked
 
+    private void drugTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_drugTableKeyReleased
+        setCostInTable();
+    }//GEN-LAST:event_drugTableKeyReleased
+
+    private void checkoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutButtonActionPerformed
+        int rows = drugTable.getRowCount();
+        int total = 0;
+        for(int i=0;i<rows;i++){
+            try {
+                total += Integer.parseInt((String) drugTable.getValueAt(i, 3));
+            }catch (NumberFormatException e){
+                drugMedicineError.setText("Input the costs of Medicine");
+                removeMedicineError();
+                return;
+            }
+        }
+        totalBill.setText("Total Bill: "+ total);
+        receipt.setAmount(total);
+    }//GEN-LAST:event_checkoutButtonActionPerformed
+
+    public void removeMedicineError(){
+        Thread a = new Thread(()->{
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            drugMedicineError.setText("");
+        });
+        service.execute(a);
+    }
+
     private void drugTableKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_drugTableKeyPressed
         setCostInTable();
     }//GEN-LAST:event_drugTableKeyPressed
 
-    private void drugTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_drugTableKeyReleased
-        setCostInTable();
-    }//GEN-LAST:event_drugTableKeyReleased
+    private void buyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyButtonActionPerformed
+        if(this.receipt==null){
+            drugMedicineError.setText("No Prescription is add");
+            removeMedicineError();
+        }
+        this.receipt.setMedStoreId(pharma.getMedStoreId());
+        this.receipt.setPurchaseTime(new Date());
+        Receipt r = main.purchase(this.receipt);
+        if(r==null){
+            drugMedicineError.setText("Something went Wrong");
+            removeMedicineError();
+            return;
+        }
+        pharma.addCustomer(this.receipt);
+        this.receipt = null;
+        custModel = new DefaultTableModel(new String[][]{null,null,null,null},new String[]{"Medicine","Quantity","Cost/Med","Total Cost"});
+        phoneSearch.setText("");
+        drugPersonDetails.setText("");
+        totalBill.setText("");
+        drugTable.setModel(custModel);
+    }//GEN-LAST:event_buyButtonActionPerformed
 
     public void setCostInTable(){
         int row = drugTable.getSelectedRow();
@@ -793,13 +869,19 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         if(b==null){
             return;
         }
-        String a = (String) drugTable.getValueAt(row,2);
-        String c = String.valueOf(Integer.parseInt(a)*Integer.parseInt(b));
-        drugTable.setValueAt(c,row,3);
+        try {
+            String a = (String) drugTable.getValueAt(row, 2);
+            String c = String.valueOf(Integer.parseInt(a)*Integer.parseInt(b));
+            drugTable.setValueAt(c,row,3);
+        }catch (NumberFormatException e){
+            drugMedicineError.setText("*Invalid Input");
+            removeMedicineError();
+        }
+
     }
 
-    private void displayMed(Receipt receipt){
-        String[] meds = receipt.getMedicine().split(",");
+    private void displayMed(){
+        String[] meds = this.receipt.getMedicine().split(",");
         String[][] values = new String[meds.length][4];
         for(int i=0;i<values.length;i++){
             String[] temp = meds[i].split(" ");
@@ -839,39 +921,12 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PharmacyDisplay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PharmacyDisplay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PharmacyDisplay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PharmacyDisplay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PharmacyDisplay().setVisible(true);
-            }
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buyButton;
+    private javax.swing.JButton checkoutButton;
     private javax.swing.JLabel dashBoardLabel;
     private javax.swing.JLabel dashIndicator;
     private javax.swing.JPanel dashboardButton;
@@ -885,11 +940,8 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     private javax.swing.JPanel drugPanel;
     private javax.swing.JLabel drugPersonDetails;
     private javax.swing.JTable drugTable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -926,6 +978,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     private javax.swing.JPanel sidePanel;
     private javax.swing.JLabel slider;
     private javax.swing.JLabel totalAmount;
+    private javax.swing.JLabel totalBill;
     private javax.swing.JLabel totalCustomer;
     private javax.swing.JLabel tweleveHours;
     // End of variables declaration//GEN-END:variables

@@ -2,6 +2,8 @@ package com.Idms.util;
 
 import com.Idms.beans.Receipt;
 import com.Idms.DBUtil.DBConnection;
+import com.mysql.cj.result.SqlDateValueFactory;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Date;
@@ -36,26 +38,46 @@ public class Prescription {
         receipt.setDocRegisNo(rs.getInt(1));
         receipt.setPatientName(rs.getString(2));
         receipt.setPatientPhNo(rs.getLong(3));
-        receipt.setGenerateTime(rs.getDate(4));
+        receipt.setGenerateTime(rs.getTimestamp(4));
         receipt.setPatientAge(rs.getInt(5));
         receipt.setMedicine(rs.getString(6).split(","));
         return receipt;
     }
-    public String doneReceipt(Receipt receipt,String medStoreId) throws SQLException{
-        PreparedStatement state = connect.prepareStatement("insert into doneReceipt values(?,?,?,?,?,?,?,?)");
-        state.setInt(1,receipt.getDocRegisNo());
-        state.setString(2,receipt.getPatientName());
-        state.setLong(3,receipt.getPatientPhNo());
-        state.setTimestamp(4,new Timestamp(receipt.getGenerateTime().getTime()));
-        state.setInt(5,receipt.getPatientAge());
-        state.setString(6,receipt.getMedicine());
-        state.setString(7,medStoreId);
-        state.setTimestamp(8,new Timestamp(new Date().getTime()));
-        if(state.executeUpdate()>0)
-            return "inserted";
-        return "error";
-    }
+    public Receipt doneReceipt(Receipt receipt){
+        try {
+            PreparedStatement state = connect.prepareStatement("insert into doneReceipt values(?,?,?,?,?,?,?,?,?)");
+            state.setInt(1, receipt.getDocRegisNo());
+            state.setString(2, receipt.getPatientName());
+            state.setLong(3, receipt.getPatientPhNo());
+            state.setTimestamp(4, new Timestamp(receipt.getGenerateTime().getTime()));
+            state.setInt(5, receipt.getPatientAge());
+            state.setString(6, receipt.getMedicine());
+            state.setString(7, receipt.getMedStoreId());
+            state.setTimestamp(8, new Timestamp(new Date().getTime()));
+            state.setInt(9, receipt.getAmount());
 
+            if (state.executeUpdate() > 0)
+                return receipt;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public boolean removeActiveReceipt(Receipt receipt)  {
+        try {
+            PreparedStatement state = connect.prepareStatement("delete from activeReceipt where docregisNo=? AND patientName=? AND patientPhNo=? AND generationTime=?");
+            state.setInt(1,receipt.getDocRegisNo());
+            state.setString(2,receipt.getPatientName());
+            state.setLong(3,receipt.getPatientPhNo());
+            state.setTimestamp(4,new Timestamp(receipt.getGenerateTime().getTime()));
+            if(state.executeUpdate()>0){
+                return true;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public void addPreActiveRecord(Date date){
         Timer timer = new Timer();
