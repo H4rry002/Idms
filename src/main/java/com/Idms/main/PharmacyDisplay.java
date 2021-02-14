@@ -497,6 +497,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                 "Medicine", "Quantity", "Cost per piece","Total Cost"
             }
         ));
+        drugTable.setColumnSelectionAllowed(true);
         drugTable.setGridColor(new java.awt.Color(255, 255, 255));
         drugTable.setOpaque(false);
         drugTable.setSelectionBackground(new java.awt.Color(51, 153, 255));
@@ -769,6 +770,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
             values[i][3] = null;
         }
         custModel = new DefaultTableModel(values,new String[]{"Medicine","Quantity","Cost/Med","Total Cost"});
+
         drugTable.setModel(custModel);
     }
 

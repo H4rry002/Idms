@@ -745,7 +745,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
         });
 
         settingErrorLabel.setBackground(new java.awt.Color(255, 255, 255));
-        settingErrorLabel.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        settingErrorLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         settingErrorLabel.setForeground(new java.awt.Color(255, 51, 51));
 
         javax.swing.GroupLayout changePasswordPanelLayout = new javax.swing.GroupLayout(changePasswordPanel);
@@ -763,9 +763,12 @@ public class DoctorDisplay extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(changePasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(confirmNewPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
-                    .addComponent(settingErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(187, Short.MAX_VALUE))
+                        .addComponent(confirmNewPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)))
+                .addContainerGap(257, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswordPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(settingErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(200, 200, 200))
         );
         changePasswordPanelLayout.setVerticalGroup(
             changePasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -773,8 +776,8 @@ public class DoctorDisplay extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(settingErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addComponent(settingErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(currentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -788,7 +791,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
                 .addComponent(confirmNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(changePasswordbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         settingDisplayPanel.add(changePasswordPanel, "card2");
@@ -1317,7 +1320,9 @@ public class DoctorDisplay extends javax.swing.JFrame {
             if(a.equals("Password has been changed")){
                 settingErrorLabel.setForeground(new Color(51,255,0));
                 settingErrorLabel.setText("*"+a);
-
+                newPassword.setText("");
+                confirmNewPassword.setText("");
+                currentPassword.setText("");
             }else {
                 settingErrorLabel.setForeground(new Color(255, 51, 51));
                 settingErrorLabel.setText("*"+a);
