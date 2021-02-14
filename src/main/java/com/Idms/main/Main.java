@@ -184,7 +184,7 @@ public class Main {
         if(person.equals("doctor")){
             docDisplay.dispose();
         }
-        // else { pharma class dispose };
+         else { pharmacyDisplay.dispose(); };
         login = new Login();
         login.setVisible(true);
 

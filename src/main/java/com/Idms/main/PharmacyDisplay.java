@@ -104,9 +104,13 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         phoneSearch = new javax.swing.JTextField();
         drugPersonDetails = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        drugTable = new javax.swing.JTable();
         phoneSearchButton = new javax.swing.JButton();
         drugError = new javax.swing.JLabel();
+        drugMedicineError = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         settingPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -260,6 +264,11 @@ public class PharmacyDisplay extends javax.swing.JFrame {
 
         logoutButton.setOpaque(false);
         logoutButton.setPreferredSize(new java.awt.Dimension(260, 50));
+        logoutButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutButtonMouseClicked(evt);
+            }
+        });
 
         jLabel9.setBackground(new java.awt.Color(168, 84, 84));
         jLabel9.setOpaque(true);
@@ -477,18 +486,23 @@ public class PharmacyDisplay extends javax.swing.JFrame {
 
         drugPersonDetails.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        drugTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null,null},
+                {null, null, null,null},
+                {null, null, null,null},
+                {null, null, null,null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Medicine", "Quantity", "Cost per piece","Total Cost"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        drugTable.setGridColor(new java.awt.Color(255, 255, 255));
+        drugTable.setOpaque(false);
+        drugTable.setSelectionBackground(new java.awt.Color(51, 153, 255));
+        drugTable.setShowHorizontalLines(false);
+        drugTable.setShowVerticalLines(false);
+        jScrollPane2.setViewportView(drugTable);
 
         phoneSearchButton.setBackground(new java.awt.Color(255, 255, 255));
         phoneSearchButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -504,14 +518,24 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         drugError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         drugError.setForeground(new java.awt.Color(255, 0, 51));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel2.setText("Total Bill:");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Checkout");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.setContentAreaFilled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,20 +543,33 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(phoneSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(phoneSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(drugPersonDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                                .addComponent(phoneSearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(87, 87, 87)
+                                .addComponent(drugPersonDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(45, 45, 45)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(78, 78, 78)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(drugMedicineError, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
+                .addComponent(drugError, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(drugError, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -541,10 +578,21 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(4, 4, 4)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addComponent(drugMedicineError, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
                         .addComponent(drugPersonDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -562,7 +610,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
             .addGroup(drugPanelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         displayPanel.add(drugPanel, "card4");
@@ -689,7 +737,8 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                 drugError.setText("*No Prescription");
                 return;
             }
-            drugPersonDetails.setText("Name: "+receipt.getPatientName()+" Age:"+receipt.getPatientAge()+"\nPhone No: "+receipt.getPatientPhNo());
+            drugPersonDetails.setText("<html>Name: "+receipt.getPatientName()+"<br>Age: "+receipt.getPatientAge()+"<br>Phone No: "+receipt.getPatientPhNo()+"</html>");
+            displayMed(receipt);
         }else{
             drugError.setText("*Invalid");
         }
@@ -704,6 +753,25 @@ public class PharmacyDisplay extends javax.swing.JFrame {
             }).start();
         }
     }//GEN-LAST:event_phoneSearchButtonActionPerformed
+
+    private void logoutButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseClicked
+        main.logout("pharmacy");
+    }//GEN-LAST:event_logoutButtonMouseClicked
+
+    private void displayMed(Receipt receipt){
+        String[] meds = receipt.getMedicine().split(",");
+        String[][] values = new String[meds.length][4];
+        for(int i=0;i<values.length;i++){
+            String[] temp = meds[i].split(" ");
+            values[i][0] = temp[0];
+            values[i][1] = temp[1];
+            values[i][2] = null;
+            values[i][3] = null;
+        }
+        custModel = new DefaultTableModel(values,new String[]{"Medicine","Quantity","Cost/Med","Total Cost"});
+        drugTable.setModel(custModel);
+    }
+
 
     public void displayProfile(){
         if(pharma!=null){
@@ -771,16 +839,20 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     private javax.swing.JLabel drugError;
     private javax.swing.JLabel drugIndicator;
     private javax.swing.JLabel drugLabel;
+    private javax.swing.JLabel drugMedicineError;
     private javax.swing.JPanel drugPanel;
     private javax.swing.JLabel drugPersonDetails;
+    private javax.swing.JTable drugTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JPanel logoutButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel oneDay;

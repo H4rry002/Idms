@@ -152,6 +152,7 @@
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                                   <Connection code="patientTableModel" type="code"/>
                                 </Property>
+                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="patientTableModel = new DefaultTableModel(todisplayTable(),new String[]{&quot;Name&quot;,&quot;Phone No.&quot;,&quot;Medicine&quot;,&quot;Time&quot;});"/>
