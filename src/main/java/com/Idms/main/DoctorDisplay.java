@@ -1219,7 +1219,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
             if(medicineList[i][0] == null){
                 break;
             }
-            a[i] = medicineList[i][0] +" "+medicineList[i][1];
+            a[i] = medicineList[i][0] +" @ "+medicineList[i][1];
         }
         Receipt b = main.createReceipt(doctor.getRegistrationNo(),patientName.getText(),Integer.parseInt(patientAge.getText()),a,Long.parseLong(patientPhNo.getText()));
         if(b==null){

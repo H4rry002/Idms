@@ -856,17 +856,22 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         }
         pharma.addCustomer(this.receipt);
         this.receipt = null;
-        custModel = new DefaultTableModel(new String[][]{null,null,null,null},new String[]{"Medicine","Quantity","Cost/Med","Total Cost"});
-        phoneSearch.setText("");
-        drugPersonDetails.setText("");
-        totalBill.setText("");
-        drugTable.setModel(custModel);
+        new Thread(()->{
+            custModel = new DefaultTableModel(new String[][]{null,null,null,null},new String[]{"Medicine","Quantity","Cost/Med","Total Cost"});
+            phoneSearch.setText("");
+            drugPersonDetails.setText("");
+            totalBill.setText("");
+            drugTable.setModel(custModel);
+        }).start();
+
     }//GEN-LAST:event_buyButtonActionPerformed
 
     public void setCostInTable(){
         int row = drugTable.getSelectedRow();
         String b = (String) drugTable.getValueAt(row,1);
         if(b==null){
+            drugMedicineError.setText("*Add Meds");
+            removeMedicineError();
             return;
         }
         try {
@@ -876,6 +881,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         }catch (NumberFormatException e){
             drugMedicineError.setText("*Invalid Input");
             removeMedicineError();
+            e.printStackTrace();
         }
 
     }
@@ -884,9 +890,9 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         String[] meds = this.receipt.getMedicine().split(",");
         String[][] values = new String[meds.length][4];
         for(int i=0;i<values.length;i++){
-            String[] temp = meds[i].split(" ");
+            String[] temp = meds[i].split("@");
             values[i][0] = temp[0];
-            values[i][1] = temp[1];
+            values[i][1] = temp[1].strip();
             values[i][2] = null;
             values[i][3] = null;
         }
