@@ -11,9 +11,7 @@ import com.Idms.beans.Receipt;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -33,14 +31,13 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     Pharma pharma;
     CardLayout mainCardLayout = new CardLayout();
     Receipt receipt;
-    boolean dashBool;
-    boolean profileBool;
-    boolean drugBool;
-    boolean settingBool;
+    boolean[] mainswitch = {true,false,false,false};
     boolean[] slider = {false,false,false,true};
     private DefaultTableModel custModel;
     private DefaultTableModel custListModel;
     ExecutorService service = Executors.newSingleThreadExecutor();
+    int totalCustomerCount;
+    int totalSale;
 
     public PharmacyDisplay(Pharma pharma) {
         try {
@@ -56,14 +53,9 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         this.pharma =  pharma;
         this.main = new Main();
         initComponents();
-        dashBool = true;
-        profileBool = false;
-        drugBool = false;
-        settingBool = false;
         mainCardLayout = (CardLayout) (displayPanel.getLayout());
         displayProfile();
         displayCustomer("12h");
-
     }
 
     /**
@@ -530,36 +522,36 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                             .addComponent(profileGst, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(profileVerified, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(profilePanelLayout.createSequentialGroup()
-                        .addGap(290, 290, 290)
+                        .addGap(331, 331, 331)
                         .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(318, Short.MAX_VALUE))
         );
         profilePanelLayout.setVerticalGroup(
             profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profilePanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(26, 26, 26)
                 .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(profileNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profileName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(profileEmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profileEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(profileUsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profileUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(profilePhoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profilePhone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(profileVerifiedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profileVerified, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(profileGstLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profileGst, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -590,9 +582,9 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         ));
         drugTable.setColumnSelectionAllowed(true);
         drugTable.setGridColor(new java.awt.Color(255, 255, 255));
+        drugTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
         drugTable.setOpaque(false);
         drugTable.setRowHeight(25);
-        drugTable.setRowMargin(5);
         drugTable.setSelectionBackground(new java.awt.Color(51, 153, 255));
         drugTable.setShowHorizontalLines(false);
         drugTable.setShowVerticalLines(false);
@@ -779,7 +771,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
 
 
     private void dashboardButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardButtonMouseClicked
-        if(!dashBool){
+        if(!mainswitch[0]){
             new Thread(()->{
                 dashIndicator.setBackground(new Color(255,255,255));
                 profileIndicator.setBackground(new Color(51,51,51));
@@ -789,15 +781,15 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                 drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical.png")));
                 mainCardLayout.show(displayPanel,"card2");
             }).start();
-            dashBool = true;
-            profileBool = false;
-            drugBool = false;
-            settingBool = false;
+            mainswitch[0] = true;
+            mainswitch[1] = false;
+            mainswitch[2] = false;
+            mainswitch[3] = false;
         }
     }//GEN-LAST:event_dashboardButtonMouseClicked
 
     private void profileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileButtonMouseClicked
-        if(!profileBool){
+        if(!mainswitch[1]){
             new Thread(()->{
                 profileIndicator.setBackground(new Color(255,255,255));
                 dashIndicator.setBackground(new Color(51,51,51));
@@ -807,15 +799,15 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                 drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical.png")));
                 mainCardLayout.show(displayPanel,"card3");
             }).start();
-            dashBool = false;
-            profileBool = true;
-            drugBool = false;
-            settingBool = false;
+            mainswitch[0] = false;
+            mainswitch[1] = true;
+            mainswitch[2] = false;
+            mainswitch[3] = false;
         }
     }//GEN-LAST:event_profileButtonMouseClicked
 
     private void drugButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_drugButtonMouseClicked
-        if(!drugBool){
+        if(!mainswitch[2]){
             new Thread(()->{
                 drugIndicator.setBackground(new Color(255,255,255));
                 profileIndicator.setBackground(new Color(51,51,51));
@@ -825,15 +817,15 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                 drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicalWhite.png")));
                 mainCardLayout.show(displayPanel,"card4");
             }).start();
-            dashBool = false;
-            profileBool = false;
-            drugBool = true;
-            settingBool = false;
+            mainswitch[0] = false;
+            mainswitch[1] = false;
+            mainswitch[2] = true;
+            mainswitch[3] = false;
         }
     }//GEN-LAST:event_drugButtonMouseClicked
 
     private void settingbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingbuttonMouseClicked
-        if(!settingBool){
+        if(!mainswitch[3]){
             new Thread(()->{
                 drugIndicator.setBackground(new Color(51,51,51));
                 profileIndicator.setBackground(new Color(51,51,51));
@@ -843,10 +835,10 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                 drugLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medicalWhite.png")));
                 mainCardLayout.show(displayPanel,"card5");
             }).start();
-            dashBool = false;
-            profileBool = false;
-            drugBool = false;
-            settingBool = true;
+            mainswitch[0] = false;
+            mainswitch[1] = false;
+            mainswitch[2] = false;
+            mainswitch[3] = true;
         }
     }//GEN-LAST:event_settingbuttonMouseClicked
 
@@ -1081,6 +1073,8 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     private void displayCustomer(String interval){
         String[][] temp = customerListInString(interval);
         custListModel = new DefaultTableModel(temp,new String[]{"Name","Phone No","Medicine","Amount"});
+        totalAmount.setText("Total Amount: "+totalSale);
+        totalCustomer.setText("Total Customer: "+totalCustomerCount);
         custListTable.setModel(custListModel);
     }
 
@@ -1096,6 +1090,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         }
         String[][] temp = new String[r.size()][4];
         int j = 0;
+        totalSale = 0;
         for(int i=0;i<temp.length;i++){
             if(r.get(i).getPurchaseTime().before(date)){
                 continue;
@@ -1104,9 +1099,12 @@ public class PharmacyDisplay extends javax.swing.JFrame {
             temp[j][1] = String.valueOf(r.get(i).getPatientPhNo());
             String[] a = r.get(i).getMedicine().split("@");
             temp[j][2] = a[0] +a[1].split(",")[0];
-            temp[j][3] = String.valueOf(r.get(i).getAmount());
+            int b = r.get(i).getAmount();
+            totalSale += b;
+            temp[j][3] = String.valueOf(b);
             j++;
         }
+        totalCustomerCount = j;
         return temp;
 
     }
