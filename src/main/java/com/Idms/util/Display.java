@@ -71,11 +71,11 @@ public class Display {
             receipt.setDocRegisNo(rs.getInt(1));
             receipt.setPatientName(rs.getString(2));
             receipt.setPatientPhNo(rs.getLong(3));
-            receipt.setGenerateTime(rs.getDate(4));
+            receipt.setGenerateTime(rs.getTimestamp(4));
             receipt.setPatientAge(rs.getInt(5));
             receipt.setMedicine(rs.getString(6).split(","));
             receipt.setMedStoreId(rs.getString(7));
-            receipt.setPurchaseTime(rs.getDate(8));
+            receipt.setPurchaseTime(rs.getTimestamp(8));
             list.add(receipt);
         }
         return list;
@@ -92,11 +92,11 @@ public class Display {
             receipt.setDocRegisNo(rs.getInt(1));
             receipt.setPatientName(rs.getString(2));
             receipt.setPatientPhNo(rs.getLong(3));
-            receipt.setGenerateTime(rs.getDate(4));
+            receipt.setGenerateTime(rs.getTimestamp(4));
             receipt.setPatientAge(rs.getInt(5));
             receipt.setMedicine(rs.getString(6).split(","));
             receipt.setMedStoreId(rs.getString(7));
-            receipt.setPurchaseTime(rs.getDate(8));
+            receipt.setPurchaseTime(rs.getTimestamp(8));
             receipt.setAmount(rs.getInt(9));
             list.add(receipt);
         }

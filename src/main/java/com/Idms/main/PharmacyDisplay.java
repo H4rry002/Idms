@@ -590,9 +590,9 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         ));
         drugTable.setColumnSelectionAllowed(true);
         drugTable.setGridColor(new java.awt.Color(255, 255, 255));
+        drugTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
         drugTable.setOpaque(false);
         drugTable.setRowHeight(25);
-        drugTable.setRowMargin(5);
         drugTable.setSelectionBackground(new java.awt.Color(51, 153, 255));
         drugTable.setShowHorizontalLines(false);
         drugTable.setShowVerticalLines(false);
@@ -922,6 +922,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         }
         this.receipt.setMedStoreId(pharma.getMedStoreId());
         this.receipt.setPurchaseTime(new Date());
+        System.out.println(this.receipt.getPurchaseTime());
         Receipt r = main.purchase(this.receipt);
         if(r==null){
             drugMedicineError.setText("Something went Wrong");

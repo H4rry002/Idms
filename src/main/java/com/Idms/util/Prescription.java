@@ -53,7 +53,7 @@ public class Prescription {
             state.setInt(5, receipt.getPatientAge());
             state.setString(6, receipt.getMedicine());
             state.setString(7, receipt.getMedStoreId());
-            state.setTimestamp(8, new Timestamp(new Date().getTime()));
+            state.setTimestamp(8, new Timestamp(receipt.getPurchaseTime().getTime()));
             state.setInt(9, receipt.getAmount());
 
             if (state.executeUpdate() > 0)
