@@ -179,13 +179,13 @@ public class Main {
     }
 
     public Receipt purchase(Receipt receipt){
-
+        if(prescription.doneReceipt(receipt)==null){
+            return null;
+        }
         new Thread(()->{
-            if(!prescription.removeActiveReceipt(receipt)){
-                System.out.println("the row is not deleted");
-            }
+           prescription.removeActiveReceipt(receipt);
         }).start();
-        return prescription.doneReceipt(receipt);
+        return receipt;
     }
 
 

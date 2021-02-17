@@ -339,22 +339,20 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(100, 100, 100)
                 .addComponent(totalAmount)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(totalCustomer)
-                .addGap(47, 47, 47))
+                .addGap(229, 229, 229))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(totalCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -541,7 +539,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profilePanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(profileNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profileName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -612,7 +610,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         phoneSearchButton.setBackground(new java.awt.Color(255, 255, 255));
         phoneSearchButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         phoneSearchButton.setText("Search");
-        phoneSearchButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        phoneSearchButton.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         phoneSearchButton.setContentAreaFilled(false);
         phoneSearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -632,7 +630,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         checkoutButton.setBackground(new java.awt.Color(255, 255, 255));
         checkoutButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         checkoutButton.setText("Checkout");
-        checkoutButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        checkoutButton.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         checkoutButton.setContentAreaFilled(false);
         checkoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -643,7 +641,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         buyButton.setBackground(new java.awt.Color(255, 255, 255));
         buyButton.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         buyButton.setText("Buy");
-        buyButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        buyButton.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         buyButton.setContentAreaFilled(false);
         buyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -945,26 +943,82 @@ public class PharmacyDisplay extends javax.swing.JFrame {
 
     private void oneMonthMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oneMonthMouseClicked
         displayCustomer("1m");
-        oneMonth.setBackground(new Color(51,51,51));
-        oneMonth.setForeground(new Color(255,255,255));
+        if(slider[0]) return;
+        new Thread(()->{
+            oneMonth.setBackground(new Color(51,51,51));
+            oneMonth.setForeground(new Color(255,255,255));
+            oneWeek.setBackground(new Color(255,255,255));
+            oneWeek.setForeground(new Color(0,0,0));
+            oneDay.setBackground(new Color(255,255,255));
+            oneDay.setForeground(new Color(0,0,0));
+            tweleveHours.setBackground(new Color(255,255,255));
+            tweleveHours.setForeground(new Color(0,0,0));
+            slider[0] = true;
+            slider[1] = false;
+            slider[2] = false;
+            slider[3] = false;
+        }).start();
+
     }//GEN-LAST:event_oneMonthMouseClicked
 
     private void oneWeekMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oneWeekMouseClicked
+        if(slider[1]) return;
         displayCustomer("1w");
-        oneWeek.setBackground(new Color(51,51,51));
-        oneWeek.setForeground(new Color(255,255,255));
+        new Thread(()->{
+            oneWeek.setBackground(new Color(51,51,51));
+            oneWeek.setForeground(new Color(255,255,255));
+            oneMonth.setBackground(new Color(255,255,255));
+            oneMonth.setForeground(new Color(0,0,0));
+            oneDay.setBackground(new Color(255,255,255));
+            oneDay.setForeground(new Color(0,0,0));
+            tweleveHours.setBackground(new Color(255,255,255));
+            tweleveHours.setForeground(new Color(0,0,0));
+            slider[0] = false;
+            slider[1] = true;
+            slider[2] = false;
+            slider[3] = false;
+        }).start();
+
     }//GEN-LAST:event_oneWeekMouseClicked
 
     private void oneDayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oneDayMouseClicked
+        if(slider[2]) return;
         displayCustomer("1d");
-        oneDay.setBackground(new Color(51,51,51));
-        oneDay.setForeground(new Color(255,255,255));
+        new Thread(()->{
+            slider[0] = false;
+            slider[1] = false;
+            slider[2] = true;
+            slider[3] = false;
+            oneDay.setBackground(new Color(51,51,51));
+            oneDay.setForeground(new Color(255,255,255));
+            oneWeek.setBackground(new Color(255,255,255));
+            oneWeek.setForeground(new Color(0,0,0));
+            oneMonth.setBackground(new Color(255,255,255));
+            oneMonth.setForeground(new Color(0,0,0));
+            tweleveHours.setBackground(new Color(255,255,255));
+            tweleveHours.setForeground(new Color(0,0,0));
+        }).start();
+
     }//GEN-LAST:event_oneDayMouseClicked
 
     private void tweleveHoursMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tweleveHoursMouseClicked
+        if(slider[3]) return;
         displayCustomer("12h");
-        tweleveHours.setBackground(new Color(51,51,51));
-        tweleveHours.setForeground(new Color(255,255,255));
+        new Thread(()->{
+            tweleveHours.setBackground(new Color(51,51,51));
+            tweleveHours.setForeground(new Color(255,255,255));
+            oneWeek.setBackground(new Color(255,255,255));
+            oneWeek.setForeground(new Color(0,0,0));
+            oneMonth.setBackground(new Color(255,255,255));
+            oneMonth.setForeground(new Color(0,0,0));
+            oneDay.setBackground(new Color(255,255,255));
+            oneDay.setForeground(new Color(0,0,0));
+            slider[0] = false;
+            slider[1] = false;
+            slider[2] = false;
+            slider[3] = true;
+        }).start();
+
     }//GEN-LAST:event_tweleveHoursMouseClicked
 
     public void setCostInTable(){
@@ -977,6 +1031,9 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         }
         try {
             String a = (String) drugTable.getValueAt(row, 2);
+            if(a==null){
+                return;
+            }
             String c = String.valueOf(Integer.parseInt(a)*Integer.parseInt(b));
             drugTable.setValueAt(c,row,3);
         }catch (NumberFormatException e){

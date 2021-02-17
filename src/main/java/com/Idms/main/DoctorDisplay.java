@@ -1407,7 +1407,8 @@ public class DoctorDisplay extends javax.swing.JFrame {
             Receipt r = docPatientData.get(i);
             patientTableData[i][0] = r.getPatientName();
             patientTableData[i][1] = String.valueOf(r.getPatientPhNo());
-            patientTableData[i][2] = r.getMedicine();
+            String[] a = r.getMedicine().split("@");
+            patientTableData[i][2] = a[0]+" "+a[1].split(",")[0];
             patientTableData[i][3] = String.valueOf(r.getGenerateTime());
         }
         return patientTableData;
