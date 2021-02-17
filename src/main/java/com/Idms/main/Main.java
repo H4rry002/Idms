@@ -3,6 +3,7 @@ package com.Idms.main;
 import com.Idms.util.*;
 import com.Idms.beans.*;
 import com.mysql.cj.result.SqlDateValueFactory;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ public class Main {
     static PharmacyDisplay pharmacyDisplay;
 
 
-    public String verifyLogin(String person,String username,String password) throws SQLException, IOException {
+    public String verifyLogin(String person, String username, String password) throws SQLException, IOException {
         if(person.equals("doctor")) {
             Doctor doc =  verifyLogin.verifyCredsDoc(username,password);
             if(doc!=null){
@@ -128,7 +129,7 @@ public class Main {
                 }
                 return "*Invalid Password";
             }catch(Exception e){
-                System.out.println(e);
+                e.printStackTrace();
             }
         }
         return "Some Issue occur please contact admin";
@@ -186,6 +187,9 @@ public class Main {
         }).start();
         return prescription.doneReceipt(receipt);
     }
+
+
+
 
 
     public void logout(String person){

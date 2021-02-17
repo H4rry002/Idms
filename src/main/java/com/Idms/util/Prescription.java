@@ -65,7 +65,7 @@ public class Prescription {
     }
     public boolean removeActiveReceipt(Receipt receipt)  {
         try {
-            PreparedStatement state = connect.prepareStatement("delete from activeReceipt where docregisNo=? AND patientName=? AND patientPhNo=? AND generationTime=?");
+            PreparedStatement state = connect.prepareStatement("delete from activeReceipt where docregisNo=? AND patientName=? AND patientPhNo=? AND generateTime=?");
             state.setInt(1,receipt.getDocRegisNo());
             state.setString(2,receipt.getPatientName());
             state.setLong(3,receipt.getPatientPhNo());

@@ -47,7 +47,7 @@ public class Display {
 //        return list;
 //    }
     public ArrayList<Receipt> PatientData(int docRegisNo) throws SQLException {
-        PreparedStatement state = connect.prepareStatement("SELECT * FROM activereceipt WHERE generationTime > DATE_SUB(now(),INTERVAL 1 year) and docRegisno=?");
+        PreparedStatement state = connect.prepareStatement("SELECT * FROM activereceipt WHERE generateTime > DATE_SUB(now(),INTERVAL 1 year) and docRegisno=?");
         state.setInt(1,docRegisNo);
         ResultSet rs = state.executeQuery();
 
@@ -63,7 +63,8 @@ public class Display {
             receipt.setMedicine(rs.getString(6).split(","));
             list.add(receipt);
         }
-        state = connect.prepareStatement("SELECT * FROM donereceipt WHERE generationTime >= CURDATE()");
+        state = connect.prepareStatement("SELECT * FROM donereceipt WHERE generateTime >= CURDATE() and docRegisNo=?");
+        state.setInt(1,docRegisNo);
         rs = state.executeQuery();
         while(rs.next()){
             Receipt receipt = new Receipt();
@@ -83,7 +84,7 @@ public class Display {
 
     public ArrayList<Receipt> CustomerList(String medStoreId) throws SQLException {
         ArrayList<Receipt> list = new ArrayList<>();
-        PreparedStatement state = connect.prepareStatement("select * from donereceipt where medstoreid = ? and purchasetime>=CURDATE()");
+        PreparedStatement state = connect.prepareStatement("select * from donereceipt where medstoreid = ? and purchasetime> DATE_SUB(now(),INTERVAL 1 year)");
         state.setString(1,medStoreId);
         ResultSet rs = state.executeQuery();
         while(rs.next()){
@@ -96,6 +97,7 @@ public class Display {
             receipt.setMedicine(rs.getString(6).split(","));
             receipt.setMedStoreId(rs.getString(7));
             receipt.setPurchaseTime(rs.getDate(8));
+            receipt.setAmount(rs.getInt(9));
             list.add(receipt);
         }
         return list;
