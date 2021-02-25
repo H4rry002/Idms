@@ -909,7 +909,7 @@ public class Login extends javax.swing.JFrame {
         if(username.length()<6){
             verifyErrorLabel.setText("*Incorrect email");
         }else {
-            String a = main.sendPasswordMail(username);
+            String a = main.sendPasswordMail(username,person);
             if (a.equals("*User doesn't exist") || a.equals("*Email or username is not registered")) {
                 verifyErrorLabel.setText(a);
             } else {
@@ -997,6 +997,9 @@ public class Login extends javax.swing.JFrame {
         if(!pass.equals(cpass)){
             resetPassworderror.setText("*Your Password don't match");
             return;
+        }
+        if(person==null){
+            resetPassworderror.setText("Please select the occupation");
         }
         isResetPassword = false;
         String a =  main.resetPassword(pass,username,person);
