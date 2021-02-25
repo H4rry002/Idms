@@ -1504,7 +1504,7 @@
                 <Component class="javax.swing.JLabel" name="prescriptionIndicator">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="78" green="78" red="78" type="rgb"/>
+                      <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
@@ -1562,7 +1562,7 @@
                 <Component class="javax.swing.JLabel" name="profileIndicator">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="78" green="78" red="78" type="rgb"/>
+                      <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>

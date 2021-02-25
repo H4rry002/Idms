@@ -736,7 +736,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
 
         changePasswordbutton.setBackground(new java.awt.Color(255, 255, 255));
         changePasswordbutton.setText("Change");
-        changePasswordbutton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        changePasswordbutton.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         changePasswordbutton.setContentAreaFilled(false);
         changePasswordbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -824,7 +824,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
         reportSumitbutton.setBackground(new java.awt.Color(255, 255, 255));
         reportSumitbutton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         reportSumitbutton.setText("Submit");
-        reportSumitbutton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reportSumitbutton.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         reportSumitbutton.setContentAreaFilled(false);
         reportSumitbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -966,7 +966,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
         });
         prescription.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        prescriptionIndicator.setBackground(new java.awt.Color(120, 120, 120));
+        prescriptionIndicator.setBackground(new java.awt.Color(51, 51, 51));
         prescriptionIndicator.setOpaque(true);
         prescription.add(prescriptionIndicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 5, 48));
 
@@ -987,7 +987,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
         });
         profile.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        profileIndicator.setBackground(new java.awt.Color(120, 120, 120));
+        profileIndicator.setBackground(new java.awt.Color(51, 51, 51));
         profileIndicator.setOpaque(true);
         profile.add(profileIndicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 5, 48));
 
@@ -1105,8 +1105,8 @@ public class DoctorDisplay extends javax.swing.JFrame {
 
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
        homeIndicator.setBackground(new Color(255,255,255));
-       prescriptionIndicator.setBackground(new Color(120,120,120));
-       profileIndicator.setBackground(new Color(120,120,120));
+       prescriptionIndicator.setBackground(new Color(51,51,51));
+       profileIndicator.setBackground(new Color(51,51,51));
        homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/homeWhite.png")));
        prescriptionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/receipt.png")));
        profileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile.png")));
@@ -1114,9 +1114,9 @@ public class DoctorDisplay extends javax.swing.JFrame {
     }//GEN-LAST:event_homeMouseClicked
 
     private void prescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prescriptionMouseClicked
-        homeIndicator.setBackground(new Color(120,120,120));
+        homeIndicator.setBackground(new Color(51,51,51));
         prescriptionIndicator.setBackground(new Color(255,255,255));
-        profileIndicator.setBackground(new Color(120,120,120));
+        profileIndicator.setBackground(new Color(51,51,51));
         prescriptionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/receiptWhite.png")));
         homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home.png")));
         profileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile.png")));
@@ -1125,8 +1125,8 @@ public class DoctorDisplay extends javax.swing.JFrame {
     }//GEN-LAST:event_prescriptionMouseClicked
 
     private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
-        homeIndicator.setBackground(new Color(120,120,120));
-        prescriptionIndicator.setBackground(new Color(120,120,120));
+        homeIndicator.setBackground(new Color(51,51,51));
+        prescriptionIndicator.setBackground(new Color(51,51,51));
         profileIndicator.setBackground(new Color(255,255,255));
         homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home.png")));
         prescriptionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/receipt.png")));
@@ -1135,9 +1135,9 @@ public class DoctorDisplay extends javax.swing.JFrame {
     }//GEN-LAST:event_profileMouseClicked
 
     private void settingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingMouseClicked
-        homeIndicator.setBackground(new Color(120,120,120));
+        homeIndicator.setBackground(new Color(51,51,51));
         prescriptionIndicator.setBackground(new Color(120,120,120));
-        profileIndicator.setBackground(new Color(120,120,120));
+        profileIndicator.setBackground(new Color(51,51,51));
         homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home.png")));
         prescriptionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/receipt.png")));
         profileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile.png")));

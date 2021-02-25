@@ -10,7 +10,7 @@ import BCrypt.src.org.mindrot.jbcrypt.BCrypt;
 
 public class Users {
     Connection connect = DBConnection.getDBConnection();
-    public String createDoctor(Doctor doc) throws SQLException {
+    public String createDoctor(Doctor doc) {
         try {
             String password = BCrypt.hashpw(doc.getPassword(), BCrypt.gensalt(12));
             PreparedStatement state = connect.prepareStatement("insert into doctor values(?,?,?,?,?,?,?)");
@@ -23,7 +23,8 @@ public class Users {
             state.setBoolean(7,false);
             if (state.executeUpdate() > 0)
                 return "Inserted";
-        }catch(SQLIntegrityConstraintViolationException e){
+        }catch(Exception e){
+            e.printStackTrace();
             return e.toString();
         }
         return "error";
@@ -72,6 +73,9 @@ public class Users {
                 return "Inserted";
         }catch (SQLIntegrityConstraintViolationException e){
             return e.toString();
+        }catch(Exception e){
+            System.out.println(e.toString());
+            e.printStackTrace();
         }
         return "error";
     }

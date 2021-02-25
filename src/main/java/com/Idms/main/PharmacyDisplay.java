@@ -129,6 +129,8 @@ public class PharmacyDisplay extends javax.swing.JFrame {
         checkoutButton = new javax.swing.JButton();
         buyButton = new javax.swing.JButton();
         settingPanel = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -524,7 +526,7 @@ public class PharmacyDisplay extends javax.swing.JFrame {
                     .addGroup(profilePanelLayout.createSequentialGroup()
                         .addGap(331, 331, 331)
                         .addComponent(profileImage, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addContainerGap(369, Short.MAX_VALUE))
         );
         profilePanelLayout.setVerticalGroup(
             profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -713,28 +715,46 @@ public class PharmacyDisplay extends javax.swing.JFrame {
             .addGroup(drugPanelLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         drugPanelLayout.setVerticalGroup(
             drugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(drugPanelLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         displayPanel.add(drugPanel, "card4");
 
-        javax.swing.GroupLayout settingPanelLayout = new javax.swing.GroupLayout(settingPanel);
-        settingPanel.setLayout(settingPanelLayout);
-        settingPanelLayout.setHorizontalGroup(
-            settingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1004, Short.MAX_VALUE)
+        settingPanel.setBackground(new java.awt.Color(255, 255, 255));
+        settingPanel.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1055, Short.MAX_VALUE)
         );
-        settingPanelLayout.setVerticalGroup(
-            settingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 657, Short.MAX_VALUE)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 648, Short.MAX_VALUE)
         );
+
+        settingPanel.add(jPanel4, "card2");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1055, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 648, Short.MAX_VALUE)
+        );
+
+        settingPanel.add(jPanel5, "card3");
 
         displayPanel.add(settingPanel, "card5");
 
@@ -1138,6 +1158,8 @@ public class PharmacyDisplay extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel logoutButton;

@@ -784,6 +784,8 @@ public class Login extends javax.swing.JFrame {
             if(a.startsWith("Inserted")){
                 verifyErrorLabel.setForeground(new Color(49, 191, 49));
                 verifyErrorLabel.setText("*Successful signed up");
+                verifyEmailinput.setText(email);
+//                verifyEmailinput.setEnabled(false);
                 cardLayout.show(loginSignPanel,"card4");
                 verified = false;
             }
@@ -818,9 +820,11 @@ public class Login extends javax.swing.JFrame {
             return;
         }
         try {
-            String a = main.verifyLogin(person, loginUsername.getText(), new String(loginPassword.getPassword()));
+            String email = loginUsername.getText();
+            String a = main.verifyLogin(person,email, new String(loginPassword.getPassword()));
             if(a.equals("notVerified")){
                 verified = false;
+                verifyEmailinput.setText(email);
                 cardLayout.show(loginSignPanel,"card4");
                 verifyErrorLabel.setText("*Please Verify your email first");
                 return;
