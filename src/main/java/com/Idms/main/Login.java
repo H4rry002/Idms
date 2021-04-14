@@ -784,6 +784,8 @@ public class Login extends javax.swing.JFrame {
             if(a.startsWith("Inserted")){
                 verifyErrorLabel.setForeground(new Color(49, 191, 49));
                 verifyErrorLabel.setText("*Successful signed up");
+                verifyEmailinput.setText(email);
+//                verifyEmailinput.setEnabled(false);
                 cardLayout.show(loginSignPanel,"card4");
                 verified = false;
             }
@@ -818,9 +820,11 @@ public class Login extends javax.swing.JFrame {
             return;
         }
         try {
-            String a = main.verifyLogin(person, loginUsername.getText(), new String(loginPassword.getPassword()));
+            String email = loginUsername.getText();
+            String a = main.verifyLogin(person,email, new String(loginPassword.getPassword()));
             if(a.equals("notVerified")){
                 verified = false;
+                verifyEmailinput.setText(email);
                 cardLayout.show(loginSignPanel,"card4");
                 verifyErrorLabel.setText("*Please Verify your email first");
                 return;
@@ -905,7 +909,7 @@ public class Login extends javax.swing.JFrame {
         if(username.length()<6){
             verifyErrorLabel.setText("*Incorrect email");
         }else {
-            String a = main.sendPasswordMail(username);
+            String a = main.sendPasswordMail(username,person);
             if (a.equals("*User doesn't exist") || a.equals("*Email or username is not registered")) {
                 verifyErrorLabel.setText(a);
             } else {
@@ -993,6 +997,9 @@ public class Login extends javax.swing.JFrame {
         if(!pass.equals(cpass)){
             resetPassworderror.setText("*Your Password don't match");
             return;
+        }
+        if(person==null){
+            resetPassworderror.setText("Please select the occupation");
         }
         isResetPassword = false;
         String a =  main.resetPassword(pass,username,person);

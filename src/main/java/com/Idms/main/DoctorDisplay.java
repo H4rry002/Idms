@@ -575,7 +575,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
         profileEmailLabel.setFont(new java.awt.Font("Segoe UI", 3, 15)); // NOI18N
         profileEmailLabel.setText("Email:");
 
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userprofile.jpg"))); // NOI18N
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doctorProfile.jpg"))); // NOI18N
 
         profileVerfiiedLabel.setFont(new java.awt.Font("Segoe UI", 3, 15)); // NOI18N
         profileVerfiiedLabel.setText("Verified:");
@@ -612,15 +612,15 @@ public class DoctorDisplay extends javax.swing.JFrame {
                 .addGap(267, 267, 267))
             .addGroup(profilePanelLayout.createSequentialGroup()
                 .addGap(335, 335, 335)
-                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel27)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         profilePanelLayout.setVerticalGroup(
             profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profilePanelLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(profileNameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profileName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -724,6 +724,8 @@ public class DoctorDisplay extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel2.setText("Current Password");
 
+        currentPassword.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel13.setText("Reset Password");
@@ -731,12 +733,16 @@ public class DoctorDisplay extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel14.setText("New Password");
 
+        newPassword.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
         jLabel15.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel15.setText("Confirm New Password");
 
+        confirmNewPassword.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
         changePasswordbutton.setBackground(new java.awt.Color(255, 255, 255));
         changePasswordbutton.setText("Change");
-        changePasswordbutton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        changePasswordbutton.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         changePasswordbutton.setContentAreaFilled(false);
         changePasswordbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -754,17 +760,16 @@ public class DoctorDisplay extends javax.swing.JFrame {
             changePasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(changePasswordPanelLayout.createSequentialGroup()
                 .addGap(223, 223, 223)
-                .addGroup(changePasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(changePasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(changePasswordbutton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(newPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(currentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(changePasswordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(confirmNewPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)))
-                .addContainerGap(257, Short.MAX_VALUE))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(currentPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(newPassword)
+                    .addComponent(confirmNewPassword))
+                .addContainerGap(245, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswordPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(settingErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -804,7 +809,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
         );
         helpPanelLayout.setVerticalGroup(
             helpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
+            .addGap(0, 533, Short.MAX_VALUE)
         );
 
         settingDisplayPanel.add(helpPanel, "card3");
@@ -824,7 +829,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
         reportSumitbutton.setBackground(new java.awt.Color(255, 255, 255));
         reportSumitbutton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         reportSumitbutton.setText("Submit");
-        reportSumitbutton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reportSumitbutton.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         reportSumitbutton.setContentAreaFilled(false);
         reportSumitbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -966,7 +971,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
         });
         prescription.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        prescriptionIndicator.setBackground(new java.awt.Color(120, 120, 120));
+        prescriptionIndicator.setBackground(new java.awt.Color(51, 51, 51));
         prescriptionIndicator.setOpaque(true);
         prescription.add(prescriptionIndicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 5, 48));
 
@@ -987,7 +992,7 @@ public class DoctorDisplay extends javax.swing.JFrame {
         });
         profile.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        profileIndicator.setBackground(new java.awt.Color(120, 120, 120));
+        profileIndicator.setBackground(new java.awt.Color(51, 51, 51));
         profileIndicator.setOpaque(true);
         profile.add(profileIndicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 5, 48));
 
@@ -1105,8 +1110,8 @@ public class DoctorDisplay extends javax.swing.JFrame {
 
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
        homeIndicator.setBackground(new Color(255,255,255));
-       prescriptionIndicator.setBackground(new Color(120,120,120));
-       profileIndicator.setBackground(new Color(120,120,120));
+       prescriptionIndicator.setBackground(new Color(51,51,51));
+       profileIndicator.setBackground(new Color(51,51,51));
        homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/homeWhite.png")));
        prescriptionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/receipt.png")));
        profileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile.png")));
@@ -1114,9 +1119,9 @@ public class DoctorDisplay extends javax.swing.JFrame {
     }//GEN-LAST:event_homeMouseClicked
 
     private void prescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prescriptionMouseClicked
-        homeIndicator.setBackground(new Color(120,120,120));
+        homeIndicator.setBackground(new Color(51,51,51));
         prescriptionIndicator.setBackground(new Color(255,255,255));
-        profileIndicator.setBackground(new Color(120,120,120));
+        profileIndicator.setBackground(new Color(51,51,51));
         prescriptionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/receiptWhite.png")));
         homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home.png")));
         profileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile.png")));
@@ -1125,8 +1130,8 @@ public class DoctorDisplay extends javax.swing.JFrame {
     }//GEN-LAST:event_prescriptionMouseClicked
 
     private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
-        homeIndicator.setBackground(new Color(120,120,120));
-        prescriptionIndicator.setBackground(new Color(120,120,120));
+        homeIndicator.setBackground(new Color(51,51,51));
+        prescriptionIndicator.setBackground(new Color(51,51,51));
         profileIndicator.setBackground(new Color(255,255,255));
         homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home.png")));
         prescriptionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/receipt.png")));
@@ -1135,9 +1140,9 @@ public class DoctorDisplay extends javax.swing.JFrame {
     }//GEN-LAST:event_profileMouseClicked
 
     private void settingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingMouseClicked
-        homeIndicator.setBackground(new Color(120,120,120));
+        homeIndicator.setBackground(new Color(51,51,51));
         prescriptionIndicator.setBackground(new Color(120,120,120));
-        profileIndicator.setBackground(new Color(120,120,120));
+        profileIndicator.setBackground(new Color(51,51,51));
         homeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home.png")));
         prescriptionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/receipt.png")));
         profileIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile.png")));

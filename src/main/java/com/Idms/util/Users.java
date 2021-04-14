@@ -10,7 +10,7 @@ import BCrypt.src.org.mindrot.jbcrypt.BCrypt;
 
 public class Users {
     Connection connect = DBConnection.getDBConnection();
-    public String createDoctor(Doctor doc) throws SQLException {
+    public String createDoctor(Doctor doc) {
         try {
             String password = BCrypt.hashpw(doc.getPassword(), BCrypt.gensalt(12));
             PreparedStatement state = connect.prepareStatement("insert into doctor values(?,?,?,?,?,?,?)");
@@ -23,7 +23,8 @@ public class Users {
             state.setBoolean(7,false);
             if (state.executeUpdate() > 0)
                 return "Inserted";
-        }catch(SQLIntegrityConstraintViolationException e){
+        }catch(Exception e){
+            e.printStackTrace();
             return e.toString();
         }
         return "error";
@@ -72,13 +73,22 @@ public class Users {
                 return "Inserted";
         }catch (SQLIntegrityConstraintViolationException e){
             return e.toString();
+        }catch(Exception e){
+            System.out.println(e.toString());
+            e.printStackTrace();
         }
         return "error";
     }
 
-    public String doctorchangePassword(String newPassword,String username) throws SQLException {
+    public String doctorchangePassword(String newPassword,String username,String person) throws SQLException {
         String password = BCrypt.hashpw(newPassword,BCrypt.gensalt(12));
-        PreparedStatement state = connect.prepareStatement("update doctor set password = ? where email = ?");
+
+        PreparedStatement state;
+        if(person.equals("pharmacy"))
+        state = connect.prepareStatement("update pharma set password = ? where email = ?");
+        else{
+            state = connect.prepareStatement("update doctor set password = ? where email = ?");
+        }
         state.setString(1,password);
         state.setString(2,username);
         if(state.executeUpdate()>0){
@@ -87,9 +97,11 @@ public class Users {
         return "Some issue occured contact the admin or please try again later";
 
     }
-    public String getNameForgotPassword(String username) throws SQLException {
+    public String getNameForgotPassword(String username,String person) throws SQLException {
         if(username.contains("@")){
-            PreparedStatement state = connect.prepareStatement("select name from doctor where email = ?");
+            PreparedStatement state;
+            if(person.equals("pharmacy")) state = connect.prepareStatement("select name from pharma where email = ?");
+            else  state = connect.prepareStatement("select name from doctor where email = ?");;
             state.setString(1,username);
             ResultSet rs = state.executeQuery();
             if(rs.next()){

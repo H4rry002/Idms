@@ -748,7 +748,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="335" max="-2" attributes="0"/>
-                          <Component id="jLabel27" min="-2" pref="266" max="-2" attributes="0"/>
+                          <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -757,8 +757,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="jLabel27" min="-2" pref="197" max="-2" attributes="0"/>
-                          <EmptySpace pref="62" max="32767" attributes="0"/>
+                          <Component id="jLabel27" min="-2" pref="200" max="-2" attributes="0"/>
+                          <EmptySpace pref="39" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="profileNameLabel" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="profileName" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
@@ -857,7 +857,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel27">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/userprofile.jpg"/>
+                      <Image iconType="3" name="/doctorProfile.jpg"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -1056,19 +1056,17 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="changePasswordbutton" min="-2" pref="63" max="-2" attributes="0"/>
-                                      <Component id="newPassword" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
                                       <Component id="jLabel14" alignment="0" min="-2" pref="126" max="-2" attributes="0"/>
                                       <Component id="jLabel13" min="-2" pref="183" max="-2" attributes="0"/>
-                                      <Component id="currentPassword" min="-2" pref="167" max="-2" attributes="0"/>
                                       <Component id="jLabel2" min="-2" pref="126" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jLabel15" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="confirmNewPassword" alignment="0" pref="167" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabel15" alignment="0" min="-2" pref="167" max="-2" attributes="0"/>
+                                      <Component id="currentPassword" alignment="0" pref="195" max="32767" attributes="0"/>
+                                      <Component id="newPassword" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="confirmNewPassword" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="257" max="32767" attributes="0"/>
+                                  <EmptySpace pref="245" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
@@ -1113,6 +1111,11 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="currentPassword">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel13">
                           <Properties>
@@ -1134,6 +1137,11 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="newPassword">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel15">
                           <Properties>
@@ -1144,6 +1152,11 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="confirmNewPassword">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="SansSerif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
                         </Component>
                         <Component class="javax.swing.JButton" name="changePasswordbutton">
                           <Properties>
@@ -1192,7 +1205,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="532" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="533" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1504,7 +1517,7 @@
                 <Component class="javax.swing.JLabel" name="prescriptionIndicator">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="78" green="78" red="78" type="rgb"/>
+                      <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
@@ -1562,7 +1575,7 @@
                 <Component class="javax.swing.JLabel" name="profileIndicator">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="78" green="78" red="78" type="rgb"/>
+                      <Color blue="33" green="33" red="33" type="rgb"/>
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>

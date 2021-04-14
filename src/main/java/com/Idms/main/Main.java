@@ -21,7 +21,7 @@ public class Main {
     static PharmacyDisplay pharmacyDisplay;
 
 
-    public String verifyLogin(String person, String username, String password) throws SQLException, IOException {
+    public String verifyLogin(String person, String username, String password) throws SQLException {
         if(person.equals("doctor")) {
             Doctor doc =  verifyLogin.verifyCredsDoc(username,password);
             if(doc!=null){
@@ -125,7 +125,7 @@ public class Main {
         if(person.equals("doctor")){
             try {
                 if(verifyLogin.verifyCredsDoc(email, current)!=null){
-                    return users.doctorchangePassword(newPassword,email);
+                    return users.doctorchangePassword(newPassword,email,person);
                 }
                 return "*Invalid Password";
             }catch(Exception e){
@@ -136,20 +136,18 @@ public class Main {
     }
 
     public String resetPassword(String password,String username,String person){
-        if(person.equals("doctor")){
             try {
-                return users.doctorchangePassword(password, username);
+                return users.doctorchangePassword(password, username,person);
             }catch (Exception e){
                 System.out.print(e.toString());
             }
-        }
-        return null;
+        return "error";
     }
-    public String sendPasswordMail(String username){
+    public String sendPasswordMail(String username,String person){
         String name;
         String resetCode = randomPassword(6);
         try {
-            name = users.getNameForgotPassword(username);
+            name = users.getNameForgotPassword(username,person);
         }catch (Exception e){
             System.out.println(e);
             return "*User doesn't exist";
@@ -167,9 +165,7 @@ public class Main {
     }
 
     String randomPassword(int n){
-        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                + "0123456789"
-                + "abcdefghijklmnopqrstuvxyz";
+        String AlphaNumericString = "0123456789";
         StringBuilder sb = new StringBuilder(12);
         for(int i=0;i<n;i++){
             int j = (int)(AlphaNumericString.length()*Math.random());
@@ -187,11 +183,7 @@ public class Main {
         }).start();
         return receipt;
     }
-
-
-
-
-
+    
     public void logout(String person){
         if(person.equals("doctor")){
             docDisplay.dispose();
